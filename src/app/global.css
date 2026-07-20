@@ -1,3 +1,72 @@
-@import 'tailwindcss';
-@import 'fumadocs-ui/css/neutral.css';
-@import 'fumadocs-ui/css/preset.css';
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+
+/*
+ * Theme matched to the org's `ecl-editor` app (dark purple).
+ * Source palette: ecl-editor/src/index.css
+ */
+
+/* fonts are loaded via next/font in layout.tsx and exposed as CSS vars */
+@theme inline {
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+}
+
+:root {
+    --color-fd-background: hsl(255, 30%, 97%);
+    --color-fd-foreground: hsl(256, 40%, 14%);
+    --color-fd-muted: hsl(255, 40%, 94%);
+    --color-fd-muted-foreground: hsl(256, 20%, 42%);
+    --color-fd-popover: hsl(0, 0%, 100%);
+    --color-fd-popover-foreground: hsl(256, 40%, 14%);
+    --color-fd-card: hsl(0, 0%, 100%);
+    --color-fd-card-foreground: hsl(256, 40%, 14%);
+    --color-fd-border: hsla(256, 30%, 60%, 0.25);
+    --color-fd-primary: hsl(258, 90%, 66%);
+    --color-fd-primary-foreground: hsl(0, 0%, 100%);
+    --color-fd-secondary: hsl(255, 35%, 92%);
+    --color-fd-secondary-foreground: hsl(256, 40%, 18%);
+    --color-fd-accent: hsl(258, 60%, 90%);
+    --color-fd-accent-foreground: hsl(258, 60%, 30%);
+    --color-fd-ring: hsl(258, 90%, 66%);
+}
+
+.dark {
+    /* base scale, from ecl-editor --bg-* / --fg-* */
+    --color-fd-background: #0a0a0f;
+    --color-fd-foreground: #ebe9f5;
+    --color-fd-muted: #15151d;
+    --color-fd-muted-foreground: #a4a3b5;
+    --color-fd-popover: #15151d;
+    --color-fd-popover-foreground: #ebe9f5;
+    --color-fd-card: #0f0f15;
+    --color-fd-card-foreground: #ebe9f5;
+    --color-fd-border: rgba(255, 255, 255, 0.09);
+
+    /* accent — violet, from ecl-editor --accent */
+    --color-fd-primary: #a78bfa;
+    --color-fd-primary-foreground: #1a1025;
+    --color-fd-secondary: #1c1c26;
+    --color-fd-secondary-foreground: #ebe9f5;
+    --color-fd-accent: #a78bfa14;
+    --color-fd-accent-foreground: #cbb9fb;
+    --color-fd-ring: #a78bfa;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* subtle purple glow at the top of the page, like fumadocs' built-in
+   ocean/dusk presets do with their own accent color */
+.dark body {
+    background-image:
+        radial-gradient(
+            1100px circle at 50% -10%,
+            rgba(167, 139, 250, 0.16),
+            transparent 60%
+        ),
+        linear-gradient(180deg, rgba(167, 139, 250, 0.07), transparent 32rem);
+    background-repeat: no-repeat;
+}
