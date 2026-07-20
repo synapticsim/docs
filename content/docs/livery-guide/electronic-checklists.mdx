@@ -1,24 +1,208 @@
 ---
 title: Electronic Checklists
-description: Authoring or customizing the electronic checklist for a livery.
+description: Building and shipping a custom Electronic Checklist (ECL) with Synaptic's checklist editor.
 ---
 
-Each livery can ship its own electronic checklist (ECL) configuration.
+Each livery can ship its own Electronic Checklist (ECL) package, built and
+exported from Synaptic's checklist editor tool. This page covers importing
+and exporting checklist files, how checklists are organized in the editor,
+and the different item types available when building a checklist.
 
-<Callout title="Placeholder content" type="warn">
-  This page is a scaffold. Replace this text with real details (file
-  location/format, how to associate an ECL file with a livery, the checklist
-  editor tool).
+<a
+  href="https://ecl.synapticsim.com"
+  target="_blank"
+  rel="noreferrer"
+  className="not-prose my-4 inline-flex items-center gap-2 rounded-lg bg-fd-primary px-5 py-3 font-semibold text-fd-primary-foreground transition-opacity hover:opacity-90"
+>
+  Open the checklist editor ↗
+</a>
+
+## Import & export
+
+The editor works with two levels of JSON file:
+
+- **Package** — the whole database: its name, an optional part number, and
+  every checklist across all three categories (Normal, Non-Normal,
+  Procedure).
+- **Checklist** — a single checklist and its items. A checklist file has no
+  category of its own — that's contextual to where it lives in a package —
+  so on import it's always placed into the Normal category first; drag it
+  into a Non-Normal system or Procedure section afterward if that's where it
+  belongs.
+
+Use the **Export** button (top right) to export the current package or just
+the currently-open checklist. Use **Import** (bottom of the sidebar) to load
+a package file, or one or more checklist files at once — each file is
+validated independently, so one bad file won't block the rest from
+importing.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of the Export / Import menus in the top bar and sidebar.
 </Callout>
 
-## File location and format
+A few things worth knowing about the file format:
 
-TODO
+- **Defer / Follow-on references** (see [Action](#action)) are written to
+  disk by the target checklist's *name*, not an internal id, so they survive
+  round-tripping through export/import as long as the checklist names match.
+  If a referenced checklist can't be found after import, the editor flags it
+  with a warning rather than failing silently.
+- **CAS messages and sensed variables** are written by name where possible,
+  falling back to a raw numeric id for values the editor doesn't recognize —
+  so hand-editing exported JSON is reasonably safe as long as you stick to
+  the documented names.
+- Importing a malformed file shows a validation error describing what's
+  wrong instead of silently corrupting your package.
 
-## Associating a checklist with a livery
+## Organization
 
-TODO
+A package (database) has a name, an optional part number, and three
+categories:
 
-## Editing tools
+| Category | Grouping | Per-checklist metadata |
+| --- | --- | --- |
+| **Normal** | Flat list, no grouping | Phase — Pre-Flight, In-Flight, or Post-Flight |
+| **Non-Normal** | Grouped into named **systems** | CAS message — the alert that triggers this checklist in the sim |
+| **Procedure** | Grouped into named **sections** | — |
 
-TODO — link to the internal checklist editor tool once documented.
+The sidebar tree mirrors this structure. Each category header has a `+` to
+add a checklist (or a system/section, for Non-Normal and Procedure), and the
+search box at the top filters the whole tree by checklist name.
+
+Checklists and sections can be dragged (via the `⋮⋮` handle) to reorder them,
+or dropped into a different system/section/category to move them — including
+across categories. Deleting a checklist, section, or database that still has
+content prompts for confirmation first.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of the sidebar tree, showing all three categories with a system
+  and a section expanded.
+</Callout>
+
+The editor can hold more than one package open at once (each gets its own
+root in the sidebar tree), which is convenient for referencing another
+package while building a new one.
+
+## Item types
+
+Items are added between existing rows via the `+` control, which lists all
+six types below. Numbering is sequential and continues into branches (a
+Conditional or Multi-Select item's branches pick up numbering where the
+parent left off).
+
+### Action
+
+The core checklist line: a **challenge** and **response**, separated by
+leader dots. This is what most checklist items are.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of an Action item with a few of its flags expanded.
+</Callout>
+
+- **Comment** — a free-form note attached to the item for the checklist
+  author, not rendered as its own line.
+
+#### Sensed
+
+Links the item to a simulator variable so it can be automatically detected
+as complete, instead of relying on the pilot to manually check it off.
+Enabling it reveals a variable picker plus two more toggles:
+
+- **Invert** — flips the sensed condition, so the item is satisfied when the
+  variable is *false* instead of *true*.
+- **Latch** — once sensed, stays satisfied even if the underlying condition
+  later clears (rather than reverting to unchecked).
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Sensed Action item, including the Invert and Latch
+  toggles.
+</Callout>
+
+#### Timed
+
+Adds a countdown timer, in seconds, to the item — useful for steps that
+require waiting a fixed duration before continuing.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Timed Action item.
+</Callout>
+
+#### Limitation
+
+Flags the item as an operating limitation rather than a normal action step,
+which changes how it's presented to the pilot.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Limitation Action item.
+</Callout>
+
+#### Deferred
+
+Links this item to another checklist, in one of two directions:
+
+- **Defer** — this item hands off to another checklist that must be
+  completed first before continuing.
+- **Follow-on** — once this item is done, automatically continue into
+  another checklist.
+
+Both are set from a picker listing the other checklists in the same
+package. If a linked checklist can't be found (for example, after importing
+a single checklist file without the checklist it depends on), the flag is
+shown with a warning instead of silently pointing nowhere.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Deferred Action item, including the checklist picker.
+</Callout>
+
+### Conditional
+
+A branching item: one challenge with two independent item lists, **YES** and
+**NO**. Either branch can contain any item type, including another
+Conditional, and each branch is reordered independently. A copy button on
+either branch's label duplicates its items into the other branch as a
+starting point.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Conditional item with items in both branches.
+</Callout>
+
+### Multi-select
+
+Like Conditional, but with any number of named options instead of a fixed
+YES/NO — useful for challenges with more than two possible responses. Options
+can be added, renamed inline, and deleted (at least one must remain), and
+each option's items can be copied to the others the same way branches can on
+a Conditional item.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Multi-select item with a few options.
+</Callout>
+
+### Free text
+
+A single line of freeform text with no challenge/response split — for
+instructions, headers, or context that isn't an actionable step. Supports
+the same Defer / Follow-on links as Action items.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Free text item.
+</Callout>
+
+### Note
+
+A callout line with a severity level — **Note**, **Caution**, or
+**Warning** — color-coded to match the sim's CAS message palette. Also
+supports Defer / Follow-on.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Note item at each of the three levels.
+</Callout>
+
+### Page break
+
+Forces a page break in the printed/paginated checklist layout. It has no
+fields of its own — just a marker in the item list.
+
+<Callout title="Screenshot placeholder" type="info">
+  Screenshot of a Page break item in context between two other items.
+</Callout>
