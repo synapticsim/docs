@@ -37,7 +37,10 @@ export default function Layout({ children }: LayoutProps<"/">) {
                     These docs are a work in progress! The content on this page
                     is incomplete and will change.
                 </Banner>
-                <RootProvider theme={{ defaultTheme: "dark" }}>
+                <RootProvider
+                    theme={{ defaultTheme: "dark" }}
+                    search={{ options: { type: "static" } }}
+                >
                     {children}
                 </RootProvider>
             </body>
