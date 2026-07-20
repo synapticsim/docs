@@ -15,6 +15,11 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL(
+        process.env.NODE_ENV === "production"
+            ? "https://docs.synapticsim.com"
+            : "http://localhost:3000",
+    ),
     title: {
         template: "%s | Synaptic Docs",
         default: "Synaptic Docs",
