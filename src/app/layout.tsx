@@ -16,8 +16,8 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
     title: {
-        template: "%s | A220 Project Docs",
-        default: "A220 Project Docs",
+        template: "%s | Synaptic Docs",
+        default: "Synaptic Docs",
     },
     description: "Documentation for the A220 project.",
 };

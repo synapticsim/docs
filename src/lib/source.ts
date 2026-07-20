@@ -9,8 +9,38 @@ export const source = loader({
     plugins: [lucideIconsPlugin()],
 });
 
+function parseVersion(version: string): number[] {
+    return version.split(".").map((n) => Number.parseInt(n, 10) || 0);
+}
+
+function compareVersionsDesc(a: string, b: string): number {
+    const pa = parseVersion(a);
+    const pb = parseVersion(b);
+    for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+        const diff = (pb[i] ?? 0) - (pa[i] ?? 0);
+        if (diff !== 0) return diff;
+    }
+    return 0;
+}
+
+/** Every changelog entry (content/docs/changelog/*.mdx), newest first — each
+ *  is its own page/URL/OG image, but also gets composed into one combined
+ *  feed at `/changelog`. Sorted by the version itself (the slug), not by
+ *  frontmatter, since the version is the only thing guaranteed to sort
+ *  correctly and consistently. */
+export function getChangelogEntries() {
+    return source
+        .getPages()
+        .filter(
+            (page) => page.slugs.length === 2 && page.slugs[0] === "changelog",
+        )
+        .sort((a, b) =>
+            compareVersionsDesc(a.slugs.at(-1) ?? "", b.slugs.at(-1) ?? ""),
+        );
+}
+
 export function getPageImage(page: InferPageType<typeof source>) {
-    const segments = [...page.slugs, "image.png"];
+    const segments = [...page.slugs, "image.webp"];
 
     return {
         segments,

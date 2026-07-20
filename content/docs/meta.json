@@ -1,6 +1,7 @@
 {
     "pages": [
         "index",
+        "[History][Changelog](/changelog)",
         "report-a-bug",
         "external:[Globe][Homepage](https://synapticsim.com)",
         "---[Plane]Pilot's Guide---",
