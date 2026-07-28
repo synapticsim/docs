@@ -11,9 +11,8 @@ import {
     useRef,
 } from "react";
 import { cn } from "../lib/cn";
-import { useCopyButton } from "@fumadocs/base-ui/utils/use-copy-button";
+import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
 import { buttonVariants } from "./ui/button";
-import { useTranslations } from "@fuma-translate/react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { mergeRefs } from "../lib/merge-refs";
 
@@ -177,7 +176,6 @@ function CopyButton({
 }: ComponentProps<"button"> & {
     containerRef: RefObject<HTMLElement | null>;
 }) {
-    const t = useTranslations({ note: "code block" });
     const [checked, onClick] = useCopyButton(() => {
         const pre = containerRef.current?.getElementsByTagName("pre").item(0);
         if (!pre) return;
@@ -202,11 +200,7 @@ function CopyButton({
                 }),
                 className,
             )}
-            aria-label={
-                checked
-                    ? t("Copied Text", { note: "aria-label" })
-                    : t("Copy Text", { note: "aria-label" })
-            }
+            aria-label={checked ? "Copied Text" : "Copy Text"}
             onClick={onClick}
             {...props}
         >
