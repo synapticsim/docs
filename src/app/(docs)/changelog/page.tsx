@@ -31,7 +31,7 @@ export default function ChangelogPage() {
                     const MDX = entry.data.body;
 
                     return (
-                        <section key={entry.url}>
+                        <section key={entry.url} className="mt-20 first:mt-0">
                             <h2 id={version}>
                                 <a href={`#${version}`}>{version}</a>
                                 {entry.data.date && ` — ${entry.data.date}`}
