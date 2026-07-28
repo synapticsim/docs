@@ -9,7 +9,7 @@ export function ChangelogList({
     return (
         <div
             className={cn(
-                "grid grid-cols-[auto_1fr] justify-items-start gap-1.5",
+                "grid grid-cols-[auto_1fr] justify-items-start gap-x-4 gap-y-2",
                 className,
             )}
             {...props}

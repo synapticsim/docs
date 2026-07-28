@@ -27,9 +27,9 @@ export async function GET(
         const latest = getChangelogEntries()[0];
         const image = latest ? (
             <OgTemplate
-                date={latest.data.ogDate}
+                date={latest.data.date}
                 title={latest.data.ogHeadline ?? latest.data.title}
-                bullets={latest.data.ogBullets}
+                bullets={latest.data.bullets}
             />
         ) : (
             <OgTemplate
@@ -47,20 +47,11 @@ export async function GET(
     }
 
     const page = source.getPage(pageSlug);
-    if (!page) notFound();
+    if (!page || (page.slugs.length === 2 && page.slugs[0] === "changelog")) {
+        notFound();
+    }
 
-    // Individual changelog entries (content/docs/changelog/<version>.mdx)
-    // use the release-note card; every other page uses the docs card.
-    const isChangelogEntry =
-        page.slugs.length === 2 && page.slugs[0] === "changelog";
-
-    const image = isChangelogEntry ? (
-        <OgTemplate
-            date={page.data.ogDate}
-            title={page.data.ogHeadline ?? page.data.title}
-            bullets={page.data.ogBullets}
-        />
-    ) : (
+    const image = (
         <OgTemplate title={page.data.title} subtitle={page.data.description} />
     );
 
@@ -73,10 +64,16 @@ export async function GET(
 }
 
 export function generateStaticParams() {
-    const params = source.getPages().map((page) => ({
-        lang: page.locale,
-        slug: getPageImage(page).segments,
-    }));
+    const params = source
+        .getPages()
+        .filter(
+            (page) =>
+                !(page.slugs.length === 2 && page.slugs[0] === "changelog"),
+        )
+        .map((page) => ({
+            lang: page.locale,
+            slug: getPageImage(page).segments,
+        }));
 
     // the composed `/changelog` page has no source page of its own
     params.push({ lang: undefined, slug: ["changelog", "image.webp"] });

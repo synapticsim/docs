@@ -7,21 +7,20 @@ import {
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ChangelogRedirect } from "@/components/changelog-redirect";
 import { getPageImage, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
+
+// individual changelog entries (content/docs/changelog/<version>.mdx) are
+// only meant to be read as part of the combined /changelog feed, not as
+// standalone pages.
+function isChangelogEntry(slugs: string[]) {
+    return slugs.length === 2 && slugs[0] === "changelog";
+}
 
 export default async function Page(props: PageProps<"/[[...slug]]">) {
     const params = await props.params;
     const page = source.getPage(params.slug);
-    if (!page) notFound();
-
-    // individual changelog entries redirect to their anchor on the combined
-    // /changelog feed — this page still exists (and still generates its own
-    // metadata below) purely so it has its own og:image for link previews.
-    if (page.slugs.length === 2 && page.slugs[0] === "changelog") {
-        return <ChangelogRedirect href={`/changelog#${page.slugs.at(-1)}`} />;
-    }
+    if (!page || isChangelogEntry(page.slugs)) notFound();
 
     const MDX = page.data.body;
 
@@ -42,7 +41,9 @@ export default async function Page(props: PageProps<"/[[...slug]]">) {
 }
 
 export async function generateStaticParams() {
-    return source.generateParams();
+    return source
+        .generateParams()
+        .filter((param) => !isChangelogEntry(param.slug));
 }
 
 export async function generateMetadata(
@@ -50,7 +51,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const params = await props.params;
     const page = source.getPage(params.slug);
-    if (!page) notFound();
+    if (!page || isChangelogEntry(page.slugs)) notFound();
 
     return {
         title: page.data.title,

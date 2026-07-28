@@ -13,9 +13,9 @@ import { z } from "zod";
 // changelog entry file is named after its version (e.g. `26.7.1.mdx`), so
 // that's derived from the slug instead of duplicated in frontmatter.
 const changelogOgSchema = z.object({
-    ogDate: z.string().optional(),
+    date: z.string().optional(),
     ogHeadline: z.string().optional(),
-    ogBullets: z
+    bullets: z
         .array(z.object({ tag: z.string(), text: z.string() }))
         .optional(),
 });

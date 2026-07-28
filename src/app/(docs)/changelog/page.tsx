@@ -13,13 +13,10 @@ export default function ChangelogPage() {
     const entries = getChangelogEntries();
     const components = getMDXComponents();
 
-    const toc = entries.flatMap((entry) => {
+    const toc = entries.map((entry) => {
         const version = entry.slugs.at(-1);
 
-        return [
-            { title: version, url: `#${version}`, depth: 2 },
-            ...entry.data.toc,
-        ];
+        return { title: version, url: `#${version}`, depth: 2 };
     });
 
     return (
@@ -37,7 +34,7 @@ export default function ChangelogPage() {
                         <section key={entry.url}>
                             <h2 id={version}>
                                 <a href={`#${version}`}>{version}</a>
-                                {entry.data.ogDate && ` — ${entry.data.ogDate}`}
+                                {entry.data.date && ` — ${entry.data.date}`}
                                 {index === 0 && (
                                     <Badge
                                         variant="outline"

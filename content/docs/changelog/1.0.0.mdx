@@ -1,7 +1,6 @@
 ---
 title: v1.0.0
-ogDate: July 23, 2026
-ogHeadline: v1.0.0 (Pre-Release)
+date: July 23, 2026
 ---
 
 🎉 **Welcome to the A220!** 🎉
@@ -10,11 +9,12 @@ This is our pre-release build that was sent out to media partners.
 
 ### Known Issues
 
+1. The `FMS ROUTE LEGS` page negatively affects performance when open. We recommend closing the page as soon as you are done interacting with it
 1. Our flight phase state machine does not correctly reset during turnaround without a full power cycle. Performing a second takeoff and landing after a prior flight without fully shutting down the aircraft may cause any of the following to occur:
     - Spurious `TOO LOW, FLAPS` and `TOO LOW, GEAR` aurals
     - Autothrottle will not engage `RETARD` thrust on landing. We recommend disengaging autothrottle and utilizing manual throttle control following turnaround
-2. If you do not see a blue preview needle on the HSI before LOC intercept when flying a LOC or ILS approach, select `HDG` lateral mode on a course to intercept, then swap the `NAV SRC` manually on the CTP and arm `APPR` on the FCP
+1. If you do not see a blue preview needle on the HSI before LOC intercept when flying a LOC or ILS approach, select `HDG` lateral mode on a course to intercept, then swap the `NAV SRC` manually on the CTP and arm `APPR` on the FCP
     - This can be caused by selecting a direct-to a FAF approach fix. When possible, execute direct-to's to the fix before the FAF
-3. Updating the Navigraph database will **not** auto-select it over the native database. Users must go to the `Reload Data & Software` maintenance submenu to select it following an update
-4. The autobrakes are currently very violent on de-rotation. Disable autobrakes for the smoothest possible landing
-5. Navigraph authentication does not always persist. Users may be prompted to sign-in again when the simulator is reloaded
+1. Updating the Navigraph database will **not** auto-select it over the native database. Users must go to the `Reload Data & Software` maintenance submenu to select it following an update
+1. The autobrakes are currently very violent on de-rotation. Disable autobrakes for the smoothest possible landing
+1. Navigraph authentication does not always persist. Users may be prompted to sign-in again when the simulator is reloaded

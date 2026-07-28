@@ -7,6 +7,8 @@ const GLOW_COLOR = "rgba(167, 139, 250, 0.16)";
 const ACCENT_COLOR = "#a78bfa";
 const INK_COLOR = "#ebe9f5";
 const MUTED_COLOR = "#b7b7c4";
+// matches the `success` Badge variant's `fd-success` token (src/components/badge.tsx)
+const SUCCESS_COLOR = "#00c950";
 
 interface OgTemplateProps {
     title: ReactNode;
@@ -122,7 +124,10 @@ export default function OgTemplate({
                                             fontWeight: 700,
                                             letterSpacing: "0.12em",
                                             textTransform: "uppercase",
-                                            color: ACCENT_COLOR,
+                                            color:
+                                                b.tag === "Added"
+                                                    ? SUCCESS_COLOR
+                                                    : ACCENT_COLOR,
                                         }}
                                     >
                                         {b.tag}
