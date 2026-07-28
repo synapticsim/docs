@@ -1,0 +1,115 @@
+---
+title: Configuration
+description: Instructions on shipping aircraft configurations, such as checklists and FMS defaults, with a livery package.
+---
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+
+<Callout title="MSFS 2024 Only" type="warn">
+    This feature is only available with MSFS 2024's support for [`livery.cfg`](https://docs.flightsimulator.com/msfs2024/html/5_Content_Configuration/CFG_Files/livery_cfg.htm). These customizations are not available for MSFS 2020.
+</Callout>
+
+
+## Layout
+
+Below is an example of what you may find within your `PackageSources` directory when designing a livery. The relevant files for configuring a livery are `checklists.json`, `defaults.json` and `livery.cfg`. The other files are included as a reference point only.
+
+<Files>
+    <Folder name="PackageSources" defaultOpen disabled>
+        <Folder name="Config" defaultOpen disabled>
+            <Folder name="YL-CSM" defaultOpen disabled>
+                <File name="checklists.json" />
+                <File name="defaults.json" />
+            </Folder>
+        </Folder>
+        <Folder name="ContentInfo" disabled />
+        <Folder name="SimObjects/Airplanes/Synaptic_A220/liveries/inibuilds/Livery" defaultOpen disabled>
+            <File name="livery.cfg" />
+        </Folder>
+        <File name="layout.json" />
+        <File name="manifest.json" />
+    </Folder>
+</Files>
+
+
+## `livery.cfg`
+
+Begin by configuring your `livery.cfg` file to specify your livery's registration or some other unique identifier under the `Panel_DynamicParameters` section. Collisions of this value with other liveries may lead to your file not being picked up correctly.
+
+In the example below, the value used is `YL-CSM`. Replace this value with your livery's registration.
+
+```toml title="livery.cfg"
+[Version]
+major = 1
+minor = 0
+
+[General]
+name="Air Baltic A220-300"
+
+[Selection]
+required_tags = "ext_a223_fuselage"
+
+// [!code word:YL-CSM]
+// [!code highlight:2]
+[Panel_DynamicParameters]
+param.0 = "config,YL-CSM"
+```
+
+
+## `Config`
+
+Inside `PackageSources`, create a `Config` directory and another directory underneath that matches the value from [`livery.cfg`](#liverycfg). Following the previous example, our directories would look as follows:
+
+<Files>
+    <Folder name="PackageSources" defaultOpen disabled>
+        <Folder name="Config" defaultOpen disabled>
+            <Folder name="YL-CSM" defaultOpen disabled>
+                <File name="checklists.json" />
+                <File name="defaults.json" />
+            </Folder>
+        </Folder>
+    </Folder>
+</Files>
+
+
+### `checklists.json`
+
+Follow the instructions in the [documentation](./checklists/index.mdx) to create a `checklists.json` file at https://ecl.synapticsim.com.
+
+Note that the file **must** be named `checklists.json` for it to be detected by the aircraft.
+
+### `defaults.json`
+
+Instructions on creating a `defaults.json` file are coming soon and will be available [here](./defaults.mdx).
+
+
+## `PackageDefinitions`
+
+The final step is to register an asset group within `PackageDefinitions` to copy the `Config` directory when building the livery package.
+
+Add the following to the `PackageDefinitions/synaptic-a220-airliner-Livery.xml` file. Ensure that you replace `YL-CSM` with the name of the directory you created [earlier](#config).
+
+```xml title="synaptic-a220-airliner-Livery.xml"
+<?xml version="1.0" encoding="utf-8"?>
+<AssetPackage Version="0.0.14">
+    <!-- other fields truncated for clarity -->
+
+    <AssetGroups>
+        <AssetGroup Name="ContentInfo">
+            <!-- snip -->
+        </AssetGroup>
+        <AssetGroup Name="A220_simobjects">
+            <!-- snip -->
+        </AssetGroup>
+        // [!code word:YL-CSM]
+        // [!code highlight:8]
+        <AssetGroup Name="Config">
+            <Type Version="0">Copy</Type>
+            <Flags>
+                <FSXCompatibility>false</FSXCompatibility>
+            </Flags>
+            <AssetDir>PackageSources\Config\</AssetDir>
+            <OutputDir>Config\YL-CSM\</OutputDir>
+        </AssetGroup>
+    </AssetGroups>
+</AssetPackage>
+```
