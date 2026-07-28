@@ -15,6 +15,7 @@ This is our pre-release build that was sent out to media partners.
     - Autothrottle will not engage `RETARD` thrust on landing. We recommend disengaging autothrottle and utilizing manual throttle control following turnaround
 1. If you do not see a blue preview needle on the HSI before LOC intercept when flying a LOC or ILS approach, select `HDG` lateral mode on a course to intercept, then swap the `NAV SRC` manually on the CTP and arm `APPR` on the FCP
     - This can be caused by selecting a direct-to a FAF approach fix. When possible, execute direct-to's to the fix before the FAF
+1. Using the Native database with custom sceneries sometimes leads to the simulator's API incorrectly returning no ILS stations for the airport. When flying a LOC or ILS approach, verify that the correct frequency and course is tuned 31 nmi from the airport reference point.
 1. Updating the Navigraph database will **not** auto-select it over the native database. Users must go to the `Reload Data & Software` maintenance submenu to select it following an update
 1. The autobrakes are currently very violent on de-rotation. Disable autobrakes for the smoothest possible landing
 1. Navigraph authentication does not always persist. Users may be prompted to sign-in again when the simulator is reloaded
