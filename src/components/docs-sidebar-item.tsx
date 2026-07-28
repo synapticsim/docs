@@ -26,7 +26,9 @@ export function DocsSidebarItem({ item }: { item: PageTreeItem }) {
                 depth >= 1 &&
                     "data-[active=true]:before:absolute data-[active=true]:before:inset-y-2.5 data-[active=true]:before:start-2.5 data-[active=true]:before:w-px data-[active=true]:before:bg-fd-primary data-[active=true]:before:content-['']",
             )}
-            style={{ paddingInlineStart: `calc(${2 + 3 * depth} * var(--spacing))` }}
+            style={{
+                paddingInlineStart: `calc(${2 + 3 * depth} * var(--spacing))`,
+            }}
         >
             {subtext ? (
                 <span className="flex flex-col">
