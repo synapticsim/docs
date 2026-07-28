@@ -4,6 +4,7 @@ const withMDX = createMDX();
 
 /** @type {import('next').NextConfig} */
 const config = {
+    output: 'export',
     reactStrictMode: true,
     // GitHub Pages only serves static files, so build a static export
     // instead of requiring a Node server. Scoped to actual builds only —

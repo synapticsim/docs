@@ -1,13 +1,12 @@
 {
     "pages": [
         "index",
+        "external:[Globe][Homepage](https://synapticsim.com)",
         "[History][Changelog](/changelog)",
         "external:[BookOpen][Flight Guide\nby A220 Driver](https://ugc.production.linktr.ee/2825963b-7686-43fb-913e-0530abe9b753_Airbus-A220-Pilot-Guide.pdf)",
-        "report-a-bug",
-        "external:[Globe][Homepage](https://synapticsim.com)",
         "---[Plane]Pilot's Guide---",
-        "...pilots-guide",
+        "...pilots",
         "---[Paintbrush]Livery Guide---",
-        "...livery-guide"
+        "...liveries"
     ]
 }
