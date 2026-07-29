@@ -23,20 +23,32 @@ function compareVersionsDesc(a: string, b: string): number {
     return 0;
 }
 
-/** Every changelog entry (content/docs/changelog/*.mdx), newest first — each
- *  is its own page/URL/OG image, but also gets composed into one combined
- *  feed at `/changelog`. Sorted by the version itself (the slug), not by
- *  frontmatter, since the version is the only thing guaranteed to sort
- *  correctly and consistently. */
+/** content/docs/changelog/known-issues.mdx isn't a version entry — it's a
+ *  standing list rendered once at the top of the combined `/changelog` feed,
+ *  so it's excluded from getChangelogEntries and fetched on its own. */
+const KNOWN_ISSUES_SLUG = "known-issues";
+
+/** Every changelog entry (content/docs/changelog/<version>.mdx), newest
+ *  first — each is its own page/URL/OG image, but also gets composed into
+ *  one combined feed at `/changelog`. Sorted by the version itself (the
+ *  slug), not by frontmatter, since the version is the only thing
+ *  guaranteed to sort correctly and consistently. */
 export function getChangelogEntries() {
     return source
         .getPages()
         .filter(
-            (page) => page.slugs.length === 2 && page.slugs[0] === "changelog",
+            (page) =>
+                page.slugs.length === 2 &&
+                page.slugs[0] === "changelog" &&
+                page.slugs[1] !== KNOWN_ISSUES_SLUG,
         )
         .sort((a, b) =>
             compareVersionsDesc(a.slugs.at(-1) ?? "", b.slugs.at(-1) ?? ""),
         );
+}
+
+export function getKnownIssues() {
+    return source.getPage(["changelog", KNOWN_ISSUES_SLUG]);
 }
 
 export function getPageImage(page: InferPageType<typeof source>) {

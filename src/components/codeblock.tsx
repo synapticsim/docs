@@ -1,4 +1,5 @@
 "use client";
+import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
 import { Check, Clipboard } from "lucide-react";
 import {
     type ComponentProps,
@@ -11,10 +12,9 @@ import {
     useRef,
 } from "react";
 import { cn } from "../lib/cn";
-import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
+import { mergeRefs } from "../lib/merge-refs";
 import { buttonVariants } from "./ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { mergeRefs } from "../lib/merge-refs";
 
 export interface CodeBlockProps
     extends Omit<ComponentProps<"figure">, "title"> {
@@ -145,7 +145,6 @@ export function CodeBlock({
                 ref={areaRef}
                 {...viewportProps}
                 role="region"
-                tabIndex={0}
                 className={cn(
                     "text-[0.8125rem] py-3.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring",
                     viewportProps.className,

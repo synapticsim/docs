@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { googleFonts } from "takumi-js/helpers";
 import { ImageResponse } from "takumi-js/response";
 import OgTemplate from "@/components/og-template";
-import { getChangelogEntries, getPageImage, source } from "@/lib/source";
+import { getPageImage, source } from "@/lib/source";
 
 export const revalidate = false;
 
@@ -22,16 +22,9 @@ export async function GET(
 
     // `/changelog` itself has no source page (it's composed from
     // content/docs/changelog/*.mdx at src/app/(docs)/changelog/page.tsx),
-    // so its image is generated from the latest entry instead.
+    // so its image is generated directly rather than from a page.
     if (pageSlug.length === 1 && pageSlug[0] === "changelog") {
-        const latest = getChangelogEntries()[0];
-        const image = latest ? (
-            <OgTemplate
-                date={latest.data.date}
-                title={latest.data.ogHeadline ?? latest.data.title}
-                bullets={latest.data.bullets}
-            />
-        ) : (
+        const image = (
             <OgTemplate
                 title="Changelog"
                 subtitle="Version history for the A220 project."

@@ -1,11 +1,11 @@
 "use client";
 
 import { cn } from "@fumadocs/ui/cn";
+import type { Item as PageTreeItem } from "fumadocs-core/page-tree";
 import {
     SidebarItem,
     useFolderDepth,
 } from "fumadocs-ui/components/sidebar/base";
-import type { Item as PageTreeItem } from "fumadocs-core/page-tree";
 
 /** A page-tree link item, split on the first newline in its name into a
  *  label and a smaller, muted subtext line underneath (e.g. an author

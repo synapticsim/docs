@@ -4,25 +4,15 @@ import { Logo } from "./logo";
 // this site's own theme (src/app/global.css `.dark` block): near-black
 // background, muted-violet glow, ecl-editor-matched accent.
 const GLOW_COLOR = "rgba(167, 139, 250, 0.16)";
-const ACCENT_COLOR = "#a78bfa";
 const INK_COLOR = "#ebe9f5";
 const MUTED_COLOR = "#b7b7c4";
-// matches the `success` Badge variant's `fd-success` token (src/components/badge.tsx)
-const SUCCESS_COLOR = "#00c950";
 
 interface OgTemplateProps {
     title: ReactNode;
     subtitle?: ReactNode;
-    date?: ReactNode;
-    bullets?: { tag: ReactNode; text: ReactNode }[];
 }
 
-export default function OgTemplate({
-    title,
-    subtitle,
-    date,
-    bullets,
-}: OgTemplateProps) {
+export default function OgTemplate({ title, subtitle }: OgTemplateProps) {
     return (
         <div
             style={{
@@ -48,21 +38,6 @@ export default function OgTemplate({
                     textWrap: "pretty",
                 }}
             >
-                {date && (
-                    <span
-                        style={{
-                            display: "flex",
-                            fontSize: 28,
-                            fontWeight: 400,
-                            color: MUTED_COLOR,
-                            position: "absolute",
-                            top: 50,
-                        }}
-                    >
-                        {date}
-                    </span>
-                )}
-
                 <span
                     style={{
                         fontSize: 72,
@@ -97,54 +72,6 @@ export default function OgTemplate({
                         >
                             {subtitle}
                         </span>
-                    )}
-
-                    {bullets && bullets.length > 0 && (
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: 10,
-                            }}
-                        >
-                            {bullets.slice(0, 5).map((b) => (
-                                <div
-                                    key={`${b.tag}:${b.text}`}
-                                    style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: 28,
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            width: 92,
-                                            fontSize: 20,
-                                            fontWeight: 700,
-                                            letterSpacing: "0.12em",
-                                            textTransform: "uppercase",
-                                            color:
-                                                b.tag === "Added"
-                                                    ? SUCCESS_COLOR
-                                                    : ACCENT_COLOR,
-                                        }}
-                                    >
-                                        {b.tag}
-                                    </div>
-                                    <span
-                                        style={{
-                                            display: "flex",
-                                            fontSize: 32,
-                                            fontWeight: 500,
-                                            color: INK_COLOR,
-                                        }}
-                                    >
-                                        {b.text}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
                     )}
                 </div>
             </div>

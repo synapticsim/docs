@@ -1,0 +1,16 @@
+---
+title: Known Issues
+---
+
+1. Our flight phase state machine does not correctly reset during turnaround without a full power cycle. Performing a second takeoff and landing after a prior flight without fully shutting down the aircraft may cause any of the following to occur:
+    - Spurious `TOO LOW, FLAPS` and `TOO LOW, GEAR` aurals
+    - Autothrottle will not engage `RETARD` thrust on landing. We recommend disengaging autothrottle and utilizing manual throttle control following turnaround
+1. If you do not see a blue preview needle on the HSI before LOC intercept when flying a LOC or ILS approach, select `HDG` lateral mode on a course to intercept, then swap the `NAV SRC` manually on the CTP and arm `APPR` on the FCP
+    - This can be caused by selecting a direct-to a FAF approach fix. When possible, execute direct-to's to the fix before the FAF
+1. Using the Native database with custom sceneries sometimes leads to the simulator's API incorrectly returning no ILS stations for the airport. When flying a LOC or ILS approach, verify that the correct frequency and course is tuned 31 nmi from the airport reference point.
+1. The autobrakes are currently very violent on de-rotation. Disable autobrakes for the smoothest possible landing
+1. Navigraph authentication does not always persist. Users may be prompted to sign-in again when the simulator is reloaded
+1. With the terrain map running and the terrain layer enabled, the terrain still fails to appear sometimes. To remedy this, switch the MFW to a different format (e.g. FMS) and then back to MAP
+1. The engine exhaust gas temperature (EGT) may indicate temperatures close to 0°C even if the ambient temperature is much higher. This is not expected to cause any issues for the flight
+1. Initializing an `ICE DETECT` test causes the `L ICE DET FAIL` and `R ICE DET FAIL` CAS messages to permanently latch on. Despite the persistent caution message, the underlying system is not actually failed
+1. Starting a flight from mid-air does not initialize the aircraft correctly and causes it to drop out of the sky
