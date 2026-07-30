@@ -13,6 +13,9 @@ import { z } from "zod";
 // in frontmatter.
 const changelogSchema = z.object({
     date: z.string().optional(),
+    // Marks an entry as not-yet-released. Renders an amber "Upcoming" badge
+    // next to the version heading (src/app/(docs)/changelog/page.tsx).
+    upcoming: z.boolean().optional(),
 });
 
 // You can customise Zod schemas for frontmatter and `meta.json` here
