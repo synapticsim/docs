@@ -44,8 +44,9 @@ export default function ChangelogPage() {
                     return (
                         <section
                             key={entry.url}
-                            className={cn("mt-20", index === 0 && "mt-0")}
+                            className={cn(index !== 0 && "mt-16")}
                         >
+                            {index > 0 && <hr className="my-5" />}
                             <h2 id={version}>
                                 <a href={`#v${version}`}>v{version}</a>
                                 {entry.data.date && ` — ${entry.data.date}`}
@@ -75,7 +76,8 @@ export default function ChangelogPage() {
                         const KnownIssuesMDX = knownIssues.data.body;
 
                         return (
-                            <section className="mt-20">
+                            <section className="mt-16">
+                                <hr className="my-5" />
                                 <h2 id="known-issues">
                                     <a href="#known-issues">Known Issues</a>
                                 </h2>
