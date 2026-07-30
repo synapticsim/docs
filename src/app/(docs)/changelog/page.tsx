@@ -15,6 +15,10 @@ export default function ChangelogPage() {
     const knownIssues = getKnownIssues();
     const components = getMDXComponents();
 
+    // "Latest" marks the newest *released* version. If the topmost entry is an
+    // upcoming (unreleased) release, the latest released one is the next entry.
+    const latestIndex = entries[0]?.data.upcoming ? 1 : 0;
+
     const toc = [
         ...entries.map((entry) => {
             const version = entry.slugs.at(-1);
@@ -45,12 +49,20 @@ export default function ChangelogPage() {
                             <h2 id={version}>
                                 <a href={`#v${version}`}>v{version}</a>
                                 {entry.data.date && ` — ${entry.data.date}`}
-                                {index === 0 && (
+                                {index === latestIndex && (
                                     <Badge
-                                        variant="outline"
+                                        variant="success"
                                         className="ms-2 rounded-md align-bottom text-base"
                                     >
                                         Latest
+                                    </Badge>
+                                )}
+                                {entry.data.upcoming && (
+                                    <Badge
+                                        variant="amber"
+                                        className="ms-2 rounded-md align-bottom text-base"
+                                    >
+                                        Upcoming
                                     </Badge>
                                 )}
                             </h2>
