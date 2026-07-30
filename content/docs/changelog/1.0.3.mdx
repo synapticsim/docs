@@ -1,0 +1,85 @@
+---
+title: v1.0.3
+date: August 4, 2026
+bullets:
+    - tag: Added
+      text: Updated default Navigraph database to 2503
+    - tag: Added
+      text: Nav database selectable from `FMS DBASE STATUS` page
+    - tag: Fixed
+      text: Copy/paste formatting for coordinates
+    - tag: Fixed
+      text: General pass at optimizing FMS pages
+---
+
+<Callout title="v1.0.2 is intentionally skipped" type="info">
+    We submitted a patched package to the Microsoft Marketplace, which automatically bumped the MSFS 2020 version to v1.0.2.
+    To keep the versions in sync moving forward, we are skipping ahead to v1.0.3.
+
+    **The v1.0.2 build on MSFS 2020 is equivalent to the v1.0.1 build on MSFS 2024.**
+</Callout>
+
+
+## Systems
+
+<ChangelogList>
+    <Added>Updated the default Navigraph database bundled with the aircraft to `2503` (`20MAR25`–`16APR25`)</Added>
+    <Added>Ability to select nav database from FMS `DBASE STATUS` page</Added>
+
+    <Fixed>General pass over the PFD, ND, and FMS pages to make improvements to performance</Fixed>
+    <Fixed>WASM crash when attempting to clear a discontinuity at the start of the flight plan</Fixed>
+    <Fixed>WASM crash and instability when starting APU from battery power</Fixed>
+    <Fixed>WASM crash occasionally when using native navdata</Fixed>
+    <Fixed>Flight phase not being reset correctly following turnaround</Fixed>
+    <Fixed>Display brightness causes weird transparency on pop-out window</Fixed>
+    <Fixed>Valid zero-fuel weight values being rejected on the FMS `INIT FUEL` page</Fixed>
+    <Fixed>Valid SimBrief usernames being rejected on the FMS `UPLINK` dialog</Fixed>
+    <Fixed>Terrain on ND sometimes not appearing or disappearing after dragging</Fixed>
+    <Fixed>RNAV approaches prompting automatic nav-to-nav transfer with native navdata</Fixed>
+    <Fixed>Coordinates on the FMS `DBASE SEARCH` page would not be properly formatted when copied</Fixed>
+    <Fixed>Courses shown without magnetic variation on FMS `ARRIVAL DATA` dialog and `ROUTE` pages</Fixed>
+    <Fixed>Checklist `NOTE` items should not have a box around them</Fixed>
+    <Fixed>Checklist nested conditionals or multi-select selections would not activate all items</Fixed>
+    <Fixed>Checklist sensed state for `INLET_OFF` `EXHAUST_VLV_ONLY`, `EXHAUST_AUTO`, and `EXHAUST_ON` variables</Fixed>
+    <Fixed>FCP manual speed preview appearing errneously when clamped by minimum trim speed</Fixed>
+    <Fixed>PFD chronometer not overflowing to `H_:__` format when over one hour</Fixed>
+
+    <Fixed>`L ICE DET FAIL` and `R ICE DET FAIL` messages latched after system test</Fixed>
+    <Fixed>Executing a direct-to the FAF prevents nav-to-nav transfer from arming</Fixed>
+    <Fixed>EGT indicating as below ambient temperature</Fixed>
+    <Fixed>Overly aggressive autobrakes on de-rotation</Fixed>
+    <Fixed>`NO VPATH` FMS messages appearing even when not in descent</Fixed>
+</ChangelogList>
+
+
+## Flight Model
+
+<ChangelogList>
+    <Fixed>Overly soft gear compression causing issues during takeoff and landing</Fixed>
+</ChangelogList>
+
+
+## Art
+
+<ChangelogList>
+    <Fixed>Missing overwind registration on Korean Air livery</Fixed>
+    <Fixed>First window on starboard side does not match liveries</Fixed>
+    <Fixed>Missing wing placards</Fixed>
+    <Fixed>Fuse colored liveries missing plugged windows</Fixed>
+    <Fixed>Reduced cabin node count and disabled tray table interactions for improved performance</Fixed>
+    <Fixed>Reduced cockpit node count for improved performance</Fixed>
+    <Fixed>Disabled shadows on cockpit meshes for improved performance</Fixed>
+    <Fixed>Improved LOD distances for various interior and exterior models</Fixed>
+    <Fixed>Missing new blade textures in MSFS 2020</Fixed>
+</ChangelogList>
+
+
+## EFB
+
+<ChangelogList>
+    <Added>Advisory when time acceleration is active</Added>
+    <Fixed>Landing performance calculator showing incorrect landing distances</Fixed>
+    <Fixed>Default GPU auto-disconnect option to `OFF`</Fixed>
+    <Fixed>Navigraph token is lost on every new flight</Fixed>
+    <Fixed>Remove inoperative callout options page</Fixed>
+</ChangelogList>
