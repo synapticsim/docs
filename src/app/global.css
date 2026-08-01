@@ -2,6 +2,10 @@
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
 
+/* `sr-only` is applied at runtime by mdast-util-to-hast's footnote label, which
+   Tailwind's source scanning never sees. */
+@source inline("sr-only");
+
 /*
  * Theme matched to the org's `ecl-editor` app (dark purple).
  * Source palette: ecl-editor/src/index.css
@@ -75,4 +79,17 @@ ol,
 li,
 img {
     margin: 0;
+}
+
+/* footnotes sit at the end of a changelog entry — keep them quiet */
+.footnotes {
+    margin-top: 3rem;
+
+    color: var(--color-fd-muted-foreground);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+
+    p {
+        margin: 0.75rem 0;
+    }
 }

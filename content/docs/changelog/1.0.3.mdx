@@ -18,12 +18,12 @@ date: August 4, 2026
     <Added>Updated the default Navigraph database bundled with the aircraft to `2503` (`20MAR25`–`16APR25`)</Added>
     <Added>Ability to select nav database from FMS `DBASE STATUS` page</Added>
 
-    <Fixed>General pass over the PFD, ND, and FMS pages to make improvements to performance</Fixed>
+    <Fixed>General pass over the PFD, ND, and FMS pages to make improvements to performance [^1]</Fixed>
     <Fixed>WASM crash when attempting to clear a discontinuity at the start of the flight plan</Fixed>
     <Fixed>WASM crash and instability when starting APU from battery power</Fixed>
     <Fixed>WASM crash occasionally when using native navdata</Fixed>
     <Fixed>Flight phase not being reset correctly following turnaround</Fixed>
-    <Fixed>Display brightness causes weird transparency on pop-out window</Fixed>
+    <Fixed>Display brightness causes weird transparency on pop-out window [^2]</Fixed>
     <Fixed>Valid zero-fuel weight values being rejected on the FMS `INIT FUEL` page</Fixed>
     <Fixed>Valid SimBrief usernames being rejected on the FMS `UPLINK` dialog</Fixed>
     <Fixed>Terrain on ND sometimes not appearing or disappearing after dragging</Fixed>
@@ -38,9 +38,8 @@ date: August 4, 2026
 
     <Fixed>`L ICE DET FAIL` and `R ICE DET FAIL` messages latched after system test</Fixed>
     <Fixed>Executing a direct-to the FAF prevents nav-to-nav transfer from arming</Fixed>
-    <Fixed>EGT indicating as below ambient temperature</Fixed>
-    <Fixed>Overly aggressive autobrakes on de-rotation</Fixed>
     <Fixed>`NO VPATH` FMS messages appearing even when not in descent</Fixed>
+    <Fixed>Overly aggressive autobrakes on de-rotation</Fixed>
 </ChangelogList>
 
 
@@ -73,5 +72,10 @@ date: August 4, 2026
 ### Flight Model
 
 <ChangelogList>
-    <Fixed>Overly soft gear compression causing issues during takeoff and landing</Fixed>
+    <Fixed>Overly soft gear compression causing issues during takeoff and landing [^3]</Fixed>
 </ChangelogList>
+
+
+[^1]: Your mileage will vary, but we've seen improvements to average FPS of up to 30% on some machines; further improvements will be continually made in the coming weeks
+[^2]: We believe this may also resolve display issues with AMD 7000 series cards, but this is conjecture and has not been confirmed
+[^3]: This caused issues such as wobbling on the ground when applying rudder inputs at higher speeds, as well as the aircraft being randomly catapulted into the air

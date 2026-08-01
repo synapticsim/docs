@@ -35,6 +35,12 @@ export const docs = defineDocs({
 
 export default defineConfig({
     mdxOptions: {
-        // MDX options
+        remarkRehypeOptions: {
+            // remark-gfm appends a footnote footer labelled with an `sr-only`
+            // <h2>. Emitting a <span> instead keeps the label for screen readers
+            // while avoiding fumadocs' heading-anchor treatment and keeping
+            // "Footnotes" out of the sidebar TOC (rehypeToc only visits h1-h6).
+            footnoteLabelTagName: "span",
+        },
     },
 });
