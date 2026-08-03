@@ -15,15 +15,36 @@ export default function ChangelogPage() {
     const knownIssues = getKnownIssues();
     const components = getMDXComponents();
 
-    // "Latest" marks the newest *released* version. If the topmost entry is an
-    // upcoming (unreleased) release, the latest released one is the next entry.
-    const latestIndex = entries[0]?.data.upcoming ? 1 : 0;
+    // "Latest" marks the newest *released* version, i.e. the first entry
+    // that isn't upcoming (unreleased entries sort above it).
+    const latestIndex = entries.findIndex((entry) => !entry.data.upcoming);
 
     const toc = [
-        ...entries.map((entry) => {
+        ...entries.map((entry, index) => {
             const version = entry.slugs.at(-1);
 
-            return { title: `v${version}`, url: `#v${version}`, depth: 2 };
+            return {
+                title: (
+                    <span className="inline-flex items-center gap-2">
+                        v{version}
+                        {index === latestIndex && (
+                            <Badge
+                                variant="success"
+                                className="rounded-md -my-2"
+                            >
+                                Latest
+                            </Badge>
+                        )}
+                        {entry.data.upcoming && (
+                            <Badge variant="amber" className="rounded-md -my-2">
+                                Upcoming
+                            </Badge>
+                        )}
+                    </span>
+                ),
+                url: `#v${version}`,
+                depth: 2,
+            };
         }),
         ...(knownIssues
             ? [{ title: "Known Issues", url: "#known-issues", depth: 2 }]
@@ -47,7 +68,7 @@ export default function ChangelogPage() {
                             className={cn(index !== 0 && "mt-16")}
                         >
                             {index > 0 && <hr className="my-5" />}
-                            <h2 id={version}>
+                            <h2 id={`v${version}`}>
                                 <a href={`#v${version}`}>v{version}</a>
                                 {entry.data.date && ` — ${entry.data.date}`}
                                 {index === latestIndex && (
