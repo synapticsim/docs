@@ -7,6 +7,8 @@ date: August 11, 2026
 ### Systems
 
 <ChangelogList>
+    <Fixed>General pass over the ND and EICAS to make improvements to performance [^1]</Fixed>
+    <Fixed>Slightly adjust cross-track gains when en-route and on approach [^2]</Fixed>
     <Fixed>Starting engines with throttles set to max causes crazy N1/N2/EGT values</Fixed>
     <Fixed>APU start sequence broken when door opens before start request is commanded</Fixed>
     <Fixed>Ailerons droop the wrong way in windy conditions</Fixed>
@@ -14,7 +16,7 @@ date: August 11, 2026
     <Fixed>`CI` legs find intercepts on the other side of the world</Fixed>
     <Fixed>`VA` legs incorrectly treated as vectored when computing discontinuities</Fixed>
     <Fixed>`VM` legs incorrectly treated as unvectored when computing discontinuities</Fixed>
-    <Fixed>`IF` legs not replaced with `TF` legs when clearing discontinuities [^1]</Fixed>
+    <Fixed>`IF` legs not replaced with `TF` legs when clearing discontinuities [^3]</Fixed>
     <Fixed>Top-of-descent marker pinned to aircraft's present position</Fixed>
     <Fixed>Turn arcs and intercept arrows are not always drawn correctly on the map</Fixed>
     <Fixed>PFD displaying date one day ahead</Fixed>
@@ -22,7 +24,7 @@ date: August 11, 2026
     <Fixed>Map `OVLY` task menu should time out after 2 seconds</Fixed>
     <Fixed>Altitudes swapped when entering between altitude constraints into FMS</Fixed>
     <Fixed>Missing runways in custom sceneries that would use "Macadam" or "Undefined" as surface types</Fixed>
-    <Fixed>`FLAPS HANDLE INDEX` variable not set to current detent [^2]</Fixed>
+    <Fixed>`FLAPS HANDLE INDEX` variable not set to current detent [^4]</Fixed>
     <Fixed>`AUTOPILOT ALITUTDE LOCK VAR` variable not set to current preselector altitude</Fixed>
     <Fixed>Checklist `RESET ALL` function should only be selectable from index pages</Fixed>
     <Fixed>Checklist `INLET_OFF` variable state flipped</Fixed>
@@ -30,8 +32,29 @@ date: August 11, 2026
     <Fixed>`OFF` indication missing on avionics cooling inlet switch</Fixed>
     <Fixed>Incorrect relative altitude shown for TCAS traffic</Fixed>
     <Fixed>Procedure identifiers on FMS `PLAN INIT` page not cleared when corresponding segment is deleted</Fixed>
+    <Fixed>Several incorrect indications on the `AIRCRAFT` information dialog</Fixed>
 </ChangelogList>
 
 
-[^1]: This manifested itself as persistent discontinuities in the flight plan on the map, despite the FMS `ROUTE` page showing no discontinuities; guidance remained unaffected in these cases
-[^2]: This caused compatability issues with third party software such as Newsky and A Pilot's Life V2, and may have been responsible for incorrectly simulated flap damage with the simulator's default damage model
+### Art
+
+
+### EFB
+
+<ChangelogList>
+    <Fixed>Loadsheet page negatively impacts performance</Fixed>
+    <Fixed>Remove "attach/remove covers" option from ground equipment page in MSFS 2020</Fixed>
+</ChangelogList>
+
+
+### Flight Model
+
+<ChangelogList>
+    <Fixed>Doors are openable in flight</Fixed>
+</ChangelogList>
+
+
+[^1]: Will update this with rough percentages once the testing team reports back with data
+[^2]: This should help reduce the cross-track deviation observed when flying along the flight plan route and when capturing a localizer; a more comprehensive review of these gains is planned for a future update
+[^3]: This manifested itself as persistent discontinuities in the flight plan on the map, despite the FMS `ROUTE` page showing no discontinuities; guidance remained unaffected in these cases
+[^4]: This caused compatability issues with third party software such as Newsky and A Pilot's Life V2, and may have been responsible for incorrectly simulated flap damage with the simulator's default damage model
