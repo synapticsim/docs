@@ -52,3 +52,17 @@ export function Added({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
         />
     );
 }
+
+export function Removed({
+    className,
+    ...props
+}: HTMLAttributes<HTMLDivElement>) {
+    return (
+        <ChangelogItem
+            label="Removed"
+            variant="muted"
+            className={className}
+            {...props}
+        />
+    );
+}

@@ -5,7 +5,7 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as TabsComponents from "fumadocs-ui/components/tabs";
 import type { MDXComponents } from "mdx/types";
 import { Badge } from "@/components/badge";
-import { Added, ChangelogList, Fixed } from "@/components/changelog-list";
+import * as ChangelogComponents from "@/components/changelog-list";
 import { LinkButton } from "@/components/link-button";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -19,12 +19,10 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
         ),
         LinkButton,
         Badge,
-        ChangelogList,
-        Fixed,
-        Added,
         File,
         Files,
         Folder,
+        ...ChangelogComponents,
         ...TabsComponents,
         ...components,
     };
