@@ -1,0 +1,28 @@
+---
+upcoming: true
+title: v1.0.5
+date: August 18, 2026
+---
+
+### Systems
+
+<ChangelogList>
+    <Added>Ability to `INSERT AS WPT` from FMS `FIX` dialog</Added>
+    <Added>Ability to insert runways at flight plan airports as fixes [^1]</Added>
+    <Added>Ability to insert ILS navaids as fixes</Added>
+    <Added>Sentry telemetry opt-in dialog</Added>
+
+    <Fixed>General pass over the ISI to make improvements to performance</Fixed>
+    <Fixed>Incorrect VHF navaid icon shown in the FMS `FIX INFO` dialog</Fixed>
+    <Fixed>`VREF` offset should not be required to set arrival speeds</Fixed>
+    <Fixed>`STATUS` synoptic showed incorrect reading for right side brake temperatures</Fixed>
+    <Fixed>Disabled `ALONG TRK WPT` option on flight plan legs until a correct implementation is made</Fixed>
+    <Fixed>Disabled `CTRLD AIRSPACE` and `SUA` symbol layers until they are made more performant</Fixed>
+    <Fixed>Out of date magnetic variation database from October 2025</Fixed>
+    <Fixed>`VPATH` disarms if the aircraft deviates from the lateral flight plan [^2]</Fixed>
+    <Fixed>Direct-to with a course draw in the wrong direction if the aircraft is past the fix</Fixed>
+</ChangelogList>
+
+
+[^1]: Airport must be origin, destination, or alternate; works in the FMS `DBASE SEARCH`, `ROUTE LEGS`, `ROUTE VIA/TO` pages, and the `DIRECT TO`, `FIX`, and `MAP CENTER` dialogs
+[^2]: The aircraft will now stay in `VPATH` as long as `FMS1/2` is the active lateral guidance mode
