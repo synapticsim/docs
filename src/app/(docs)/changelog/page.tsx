@@ -9,6 +9,7 @@ import { Badge } from "@/components/badge";
 import { cn } from "@/lib/cn";
 import { getChangelogEntries, getKnownIssues } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
+import { Callout } from "fumadocs-ui/components/callout";
 
 export default function ChangelogPage() {
     const entries = getChangelogEntries();
@@ -88,6 +89,12 @@ export default function ChangelogPage() {
                                     </Badge>
                                 )}
                             </h2>
+                            {entry.data.upcoming && (
+                                <Callout
+                                    type="warn"
+                                    title="This changelog is for an upcoming release, and is therefore not finalized"
+                                />
+                            )}
                             <MDX components={components} />
                         </section>
                     );
@@ -112,11 +119,19 @@ export default function ChangelogPage() {
 }
 
 export function generateMetadata(): Metadata {
+    // Cache-bust the OG image so Discord and other link-preview crawlers
+    // re-fetch it whenever the changelog changes, rather than serving a
+    // stale image cached under the same static URL indefinitely.
+    const [latest] = getChangelogEntries();
+    const cacheBust = latest && `${latest.slugs.at(-1)}-${latest.data.date}`;
+
     return {
         title: "Changelog",
         description: "Version history for the A220 project.",
         openGraph: {
-            images: "/og/changelog/image.webp",
+            images: cacheBust
+                ? `/og/changelog/image.webp?v=${encodeURIComponent(cacheBust)}`
+                : "/og/changelog/image.webp",
         },
     };
 }
