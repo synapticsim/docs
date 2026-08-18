@@ -1,0 +1,51 @@
+---
+title: Sentry
+description: More information on how Synaptic uses Sentry for collecting telemetry and error logs.
+---
+
+[Sentry](https://sentry.io/) is an open-source software platform that provides centralized telemetry and application performance data collection. In short, it allows us to have a record of all crashes and errors that users have encountered while flying, including soft MFW crashes and even WASM crashes.
+
+We run a self-hosted instance of the platform on our own infrastructure at [sentry.synapticsim.com](https://sentry.synapticsim.com/), meaning the data described on this page stays under our control from the moment it leaves your simulator.
+
+
+## Opting in
+
+Telemetry collection is strictly **opt-in**. The first time the displays starts up, you will be prompted with a `SENTRY TELEMETRY OPT-IN` dialog asking whether you would like to allow the collection of telemetry data. Until `ALLOW` is selected, no telemetry data is collected.
+
+Your choice persists across simulator sessions, and can be changed at any time from the `DATA MAINTENANCE` format.
+
+
+## What we collect
+
+There are two kinds of telemetry: **crash reports**, sent when something actually fails, and **session health**, a lightweight heartbeat that tells us whether a flight ended cleanly or not.
+
+### Crash reports
+
+We capture failures from both halves of the aircraft, and the WASM side is arguably the more valuable of the two:
+
+- **WASM crashes**, raised by the aircraft's systems. These are the most notoriously unrecoverable kinds of errors, and also the ones that are hardest for us to debug without a proper telemetry setup. You'll still see the same missing data indications in the event of a WASM crash, but we'll get a detailed report of exactly where the error occurred.
+- **JavaScript errors**, raised by the displays and their applications. If the MFW application itself crashes, you'll see a dialog with a short Trace ID that allows us to link your report to a specific traceback of where the error happened.
+
+The events we receive contain:
+
+- **The error itself**—the exception type, error message, and a stack trace pointing at the errant code.
+- **Build information**—the aircraft version, the commit hash that version was built from, and the simulator/platform (`2024-pc`, `2024-xbox`, `2020-pc`, `2020-xbox`).
+- **Diagnostic breadcrumbs**—a short trail of what the instrument was doing immediately before the error, such as logs emitted by the systems and avionics or user interactions with the displays.
+
+### Session health
+
+Alongside crash reports, the aircraft periodically reports session health to Sentry. This is a heartbeat rather than a full event; it simply keeps track of how sessions ended (e.g. nominally, WASM crash, sim crash), tagged with the same build information as above.
+
+
+## What we don't collect
+
+- **Anything that identifies you.** Sentry's personally identifiable information collection is not enabled, so no usernames, no account details, and no IP addresses are attached to the events we receive. Reports arrive anonymously and cannot be traced back to an individual user.
+- **Screenshots, replays or performance traces.** Sentry supports session replay and performance monitoring; neither is enabled here.
+- **Your Navigraph account.** Navigraph sign-in and any credentials associated with it are never included in telemetry.
+
+
+## Why we collect it
+
+Crashes in a complex aircraft are frequently the hardest kind of bug to reproduce—they depend on a specific sequence of inputs, a particular aircraft state that is very hard to convey when reporting issues to us over Discord. This is especially true of the systems code, where a panic can manifest as systems that simply stop responding, with nothing on the displays to indicate what went wrong or where. A stack trace tied to a known build tells us exactly where the failure occurred, and session health tells us how widespread it is, which lets us prioritize the crashes affecting the most users rather than guessing from scattered bug reports.
+
+Attaching the version and commit to each event also lets us confirm that a fix actually worked. If a crash disappears from the reports after a release, and the session count shows the build is being flown, we know the issue is resolved; if it doesn't, we know to keep looking.
