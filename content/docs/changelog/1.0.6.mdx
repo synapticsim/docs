@@ -7,42 +7,28 @@ date: August 25, 2026
 ### Systems
 
 <ChangelogList>
+    <Fixed>Performance improvement passes on Rust backend code</Fixed>
     <Fixed>WASM crash when attempting to open leg menu on some procedures</Fixed>
-    <Fixed>PFD altitude tape incorrectly hides ten thousands placeholder above 1,500 ft</Fixed>
-    <Fixed>Avionics show missing indications during active pause</Fixed>
+    <Fixed>PFD altitude tape incorrectly hid ten-thousands placeholder above 1,500 ft</Fixed>
+    <Fixed>Avionics showing missing indications in active pause</Fixed>
     <Fixed>Post-flight checklists shown in flight after simulator has been paused</Fixed>
-    <Fixed>Heading select line on MAP should not be shown on initial load</Fixed>
-    <Fixed>Cooling inlet switch should default to `OFF` in cold and dark state</Fixed>
-    <Fixed>Screens blanking out when pressing `B` on a controller</Fixed>
+    <Fixed>Heading select line on `MAP` shown initially</Fixed>
+    <Fixed>Cooling inlet not defaulting to `OFF` in cold and dark state</Fixed>
+    <Fixed>Fix screens blanking out when pressing `B` on a controller</Fixed>
 </ChangelogList>
 
 
 ### Art
 
 <ChangelogList>
+    <Fixed>Improved performance by reducing geometry without a visual hit, with approximately **one million** fewer vertices on LOD 0, including shadow vertices, to reduce stutters</Fixed>
     <Fixed>Missing interior occlusion when seen from exterior view</Fixed>
-    <Fixed>Forward window view missing cabin walls</Fixed>
+    <Fixed>Forward window view missing cabin walls on the left and right sides</Fixed>
 </ChangelogList>
 
 
 ### EFB
 
 <ChangelogList>
-    <Added>`APT` filter for Navigraph charts</Added>
-</ChangelogList>
-
-
-### Sounds
-
-<ChangelogList>
-    <Added>Flap motoring sound</Added>
-    <Added>New ground roll effects and overall fine tuning</Added>
-    <Added>New touchdown effects and overall fine tuning</Added>
-
-    <Fixed>Changed dynamics of high end noise and reduced broadband noise in engines</Fixed>
-    <Fixed>Changed gear nose gear deploy wind noises</Fixed>
-    <Fixed>Adjusted nose gear extension and retraction thunk and scrub after liftoff</Fixed>
-    <Fixed>Adjusted some cockpit interactions to sound more spatial</Fixed>
-    <Fixed>Replaced most warning GPWS callouts</Fixed>
-    <Fixed>Replaced config-related aural warnings</Fixed>
+    <Fixed>Merged the `APT` filter for Navigraph to render all available charts</Fixed>
 </ChangelogList>
