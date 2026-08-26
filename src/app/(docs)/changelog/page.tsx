@@ -59,6 +59,12 @@ export default function ChangelogPage() {
                 Historical changelogs for the Synaptic A220.
             </DocsDescription>
             <DocsBody>
+                <Callout
+                    type="info"
+                    title="Using unofficial modifications can result in screens crashing when
+                        upgrading versions. If you are using a community mod and encounter any
+                        issues, please uninstall the mod and retry before reporting issues to us."
+                />
                 {entries.map((entry, index) => {
                     const version = entry.slugs.at(-1);
                     const MDX = entry.data.body;
