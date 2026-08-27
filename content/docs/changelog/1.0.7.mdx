@@ -1,0 +1,48 @@
+---
+upcoming: true
+title: v1.0.7
+date: August 28, 2026
+---
+
+### Systems
+
+<ChangelogList>
+    <Fixed>Improved localizer capture</Fixed>
+    <Fixed>Reduced nose-wheel steering jitter [^1]</Fixed>
+    <Fixed>Removed wing fold and capped spoiler handle position [^2]</Fixed>
+    <Fixed>Remove FMS preview VDI when nav transferred to LOC</Fixed>
+    <Fixed>Hide inactive CTP menu items</Fixed>
+    <Fixed>Don't receive audio on VHF3 when in DATA mode</Fixed>
+    <Fixed>FCP manual speed preselect should preview for 5 seconds</Fixed>
+    <Fixed>Hide heading pointer on PFD when in AUTO mode</Fixed>
+    <Fixed>Latched and sensed ECL items should only latch if they are next</Fixed>
+    <Fixed>Datalink aural variables[^3] are always reset to `0`</Fixed>
+</ChangelogList>
+
+
+### Art
+
+<ChangelogList>
+    <Fixed>Missing contrails and engine and APU heat blur effect</Fixed>
+</ChangelogList>
+
+
+### Sounds
+
+<ChangelogList>
+    <Added>Flap motoring sound</Added>
+    <Added>New ground roll effects and overall fine tuning</Added>
+    <Added>New touchdown effects and overall fine tuning</Added>
+
+    <Fixed>Changed dynamics of high end noise and reduced broadband noise in engines</Fixed>
+    <Fixed>Changed gear nose gear deploy wind noises</Fixed>
+    <Fixed>Adjusted nose gear extension and retraction thunk and scrub after liftoff</Fixed>
+    <Fixed>Adjusted some cockpit interactions to sound more spatial</Fixed>
+    <Fixed>Replaced most warning GPWS callouts</Fixed>
+    <Fixed>Replaced config-related aural warnings</Fixed>
+</ChangelogList>
+
+
+[^1]: This should hopefully reduce the risk of the aircraft flipping on the runway during landing, though this is not a bulletproof solution
+[^2]: Wing fold was used to simulate the drastic drop in lift when the ground spoilers are deployed, but may have also contributed to the aircraft flipping during landing
+[^3]: `L:A22X Aural Double Tone` and `L:A22X Aural Double Tone x3`

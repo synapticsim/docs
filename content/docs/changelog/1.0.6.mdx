@@ -20,7 +20,7 @@ date: August 25, 2026
 ### Art
 
 <ChangelogList>
-    <Fixed>Improved performance by reducing geometry without a visual hit, with approximately **one million** fewer vertices on LOD 0, including shadow vertices, to reduce stutters</Fixed>
+    <Fixed>Reduce complexity of model geometry for improved performance and fewer stutters [^1]</Fixed>
     <Fixed>Missing interior occlusion when seen from exterior view</Fixed>
     <Fixed>Forward window view missing cabin walls on the left and right sides</Fixed>
 </ChangelogList>
@@ -31,3 +31,6 @@ date: August 25, 2026
 <ChangelogList>
     <Fixed>Merged the `APT` filter for Navigraph to render all available charts</Fixed>
 </ChangelogList>
+
+
+[^1]: There are now approximately **one million** fewer vertices on LOD 0, including shadow vertices
