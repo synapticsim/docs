@@ -1,0 +1,40 @@
+---
+upcoming: true
+title: v1.0.8
+date: September 4, 2026
+---
+
+### Systems
+
+<ChangelogList>
+    <Added>PDF altitude in meters when FCP selector is in metric</Added>
+    <Added>Expanded lateral deviation scale below 1,500ft AAE</Added>
+
+    <Fixed>`TOD` indicator and aural should only trigger if VPATH is valid</Fixed>
+    <Fixed>`TOD` and `BOC` indicator and aural should only trigger before sequencing another mode</Fixed>
+    <Fixed>Guidance does not always capture VPATH at TOD</Fixed>
+    <Fixed>LPV approaches draw VPATH through VGP</Fixed>
+    <Fixed>TOD should not be drawn after FAF</Fixed>
+    <Fixed>Half bank affects guidance at low altitudes</Fixed>
+    <Fixed>Flashlight turned on by default at night</Fixed>
+    <Fixed>COM/NAV key events should change the standby frequency</Fixed>
+    <Fixed>Rudder limit arc draws beyond actual limit</Fixed>
+    <Fixed>Holding MKP `CLR/DEL` key should clear entire scratchpad</Fixed>
+    <Fixed>Opening FMS `MSG...` dialog should acknowledge per FMS</Fixed>
+    <Fixed>Checklist sensed state for `SPOILER_LEVER_*` variables</Fixed>
+    <Fixed>Normal checklists should not appear in lower half of `SUMMARY` </Fixed>
+    <Fixed>VSD should be invalid in PLAN mode</Fixed>
+    <Fixed>Approach thrust should idle after gear down or flaps 4</Fixed>
+    <Fixed>CTP barometer collar does not sync with current unit setting</Fixed>
+    <Fixed>React builds in development mode [^1]</Fixed>
+</ChangelogList>
+
+
+### Sounds
+
+<ChangelogList>
+    <Fixed>Several aurals overlap when triggered together</Fixed>
+</ChangelogList>
+
+
+[^1]: Contrary to community speculation, this has made a negligible impact on performance.
