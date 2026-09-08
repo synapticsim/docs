@@ -1,0 +1,49 @@
+---
+title: Troubleshooting
+description: Steps to resolve common issues with the Synaptic A220.
+---
+
+## Screens are black on initial load
+
+This generally indicates that the WASM module for the aircraft's systems is not running in the simulator. Please follow the following steps
+
+<Steps>
+    <Step>
+        **Uninstall any community mods.**
+
+        When using community mods, there is no guarantee that they will be compatible with different versions of the aircraft. Please uninstall any community mods before continuing, as they may be causing the avionics to crash.
+    </Step>
+    <Step>
+        **Try restarting the flight.**
+
+        Sometimes, the WASM module is not loaded by the simulator correctly the first time around, and a simple restart will kick it back into the correct state.
+    </Step>
+    <Step>
+        **If migrating to iniManager from the marketplace, verify that all Marketplace packages are disabled.**
+
+        If you have both a community folder and marketplace package active at the same time, they may conflict with one another and prevent the WASM module from loading correctly. Please ensure that the only A220 related packages in the in-game **My Library** screen are either under **Community Content** or **Air Traffic Aircraft**.
+
+        We also strongly recommend deleting the WASM cache directories from the previously installed marketplace packages. These are located at:
+        - **MSFS2020:**
+            - **Steam:** `%APPDATA%\Microsoft Flight Simulator\Packages\`
+            - **Xbox:** `%LOCALAPPDATA%\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalState\Packages\`
+        - **MSFS2024:**
+            - **Steam:** `%APPDATA%\Microsoft Flight Simulator 2024\WASM\`
+            - **Xbox:** `%LOCALAPPDATA%\Packages\Microsoft.Limitless_8wekyb3d8bbwe\LocalState\WASM\`
+    </Step>
+    <Step>
+        **Ensure the `systems.wasm` exists in your community folder package.**
+
+        We've sometimes seen that people do not have the WASM file installed into their aircraft. It should be located at:
+
+        - **MSFS 2020:** `SimObjects\Airplanes\inibuilds_aircraft-a220\panel\systems.wasm`
+        - **MSFS 2024:** `SimObjects\Airplanes\Synaptic_A220\attachments\inibuilds\Part_Interior_A223_Cockpit\panel\systems.wasm`
+
+        If it does not exist, ensure you have iniManager 2.6.0 or newer installed. Older versions of the iniManager do not support our installation flow.
+    </Step>
+    <Step>
+        **Reach out to us on [Discord](https://discord.gg/synaptic) or via [e-mail](mailto:admin@synapticsim.com) to receive further assistance.**
+
+        If all else fails, we'll be able to provide more specific help through one of our communication channels. Be prepared to give us your iniManager email so we can check the logs on our end.
+    </Step>
+</Steps>

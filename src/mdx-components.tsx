@@ -7,6 +7,8 @@ import type { MDXComponents } from "mdx/types";
 import { Badge } from "@/components/badge";
 import * as ChangelogComponents from "@/components/changelog-list";
 import { LinkButton } from "@/components/link-button";
+import { Step, Steps } from "@/components/steps";
+import { InlineCode } from "./components/code";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
     return {
@@ -17,11 +19,14 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
                 <Pre>{props.children}</Pre>
             </CodeBlock>
         ),
+        code: InlineCode,
         LinkButton,
         Badge,
         File,
         Files,
         Folder,
+        Step,
+        Steps,
         ...ChangelogComponents,
         ...TabsComponents,
         ...components,
