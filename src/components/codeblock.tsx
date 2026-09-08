@@ -117,6 +117,7 @@ export function CodeBlock({
                     {typeof icon === "string" ? (
                         <div
                             className="[&_svg]:size-3.5"
+                            // biome-ignore lint/security/noDangerouslySetInnerHtml: `icon` is trusted, author-provided SVG markup, not user input
                             dangerouslySetInnerHTML={{
                                 __html: icon,
                             }}
@@ -141,6 +142,7 @@ export function CodeBlock({
                     ),
                 })
             )}
+            {/* biome-ignore lint/a11y/useSemanticElements: areaRef and CopyButton's containerRef are typed for HTMLDivElement */}
             <div
                 ref={areaRef}
                 {...viewportProps}

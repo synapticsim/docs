@@ -1,5 +1,6 @@
 "use client";
 
+import { Tabs as Primitive } from "@base-ui/react/tabs";
 import {
     type ComponentProps,
     createContext,
@@ -10,7 +11,6 @@ import {
     useRef,
     useState,
 } from "react";
-import { Tabs as Primitive } from "@base-ui/react/tabs";
 import { mergeRefs } from "../../lib/merge-refs";
 
 type ChangeListener = (v: string) => void;
@@ -71,9 +71,9 @@ export function Tabs({
     const panels = useMemo(() => new Map<string, HTMLElement>(), []);
     const [value, setValue] =
         _value === undefined
-            ? // eslint-disable-next-line react-hooks/rules-of-hooks -- not supposed to change controlled/uncontrolled
+            ? // biome-ignore lint/correctness/useHookAtTopLevel: not supposed to change controlled/uncontrolled
               useState(defaultValue)
-            : // eslint-disable-next-line react-hooks/rules-of-hooks -- not supposed to change controlled/uncontrolled
+            : // biome-ignore lint/correctness/useHookAtTopLevel: not supposed to change controlled/uncontrolled
               [_value, useEffectEvent((v: string) => _onValueChange?.(v))];
 
     useLayoutEffect(() => {

@@ -1,3 +1,4 @@
+import { Callout } from "fumadocs-ui/components/callout";
 import {
     DocsBody,
     DocsDescription,
@@ -9,7 +10,6 @@ import { Badge } from "@/components/badge";
 import { cn } from "@/lib/cn";
 import { getChangelogEntries, getKnownIssues } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
-import { Callout } from "fumadocs-ui/components/callout";
 
 export default function ChangelogPage() {
     const entries = getChangelogEntries();

@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import type * as React from "react";
 import {
     type ComponentProps,
     createContext,
@@ -151,7 +151,7 @@ export function Tab({ value, ...props }: TabProps) {
     const { items } = useTabContext();
     const resolved =
         value ??
-        // eslint-disable-next-line react-hooks/rules-of-hooks -- `value` is not supposed to change
+        // biome-ignore lint/correctness/useHookAtTopLevel: `value` is not supposed to change
         items?.at(useCollectionIndex());
     if (!resolved)
         throw new Error(
