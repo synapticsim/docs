@@ -25,6 +25,8 @@ date: September 11, 2026
     <Fixed>`SELECT FIX` dialog for runways shows incorrect name in header</Fixed>
     <Fixed>Rollout bar moves up/down instead of left/right</Fixed>
     <Fixed>Set `KOHLSMAN SETTING MB`, `KOHLSMAN SETTING HG`, and `KOHLSMAN SETTING STD` variables [^2]</Fixed>
+    <Fixed>Set `AUTOPILOT MANAGED SPEED IN MACH` variable</Fixed>
+    <Fixed>Remove incorrect limit on `AUTOPILOT AIRSPEED HOLD VAR` and `AUTOPILOT MACH HOLD VAR` variables</Fixed>
     <Fixed>Livery-specific configurations are not always applied correctly</Fixed>
     <Fixed>Takeoff and landing weights in `FMS PERF` should be rounded</Fixed>
     <Fixed>VNAV not transitioning to `VFLC` automatically when crossing the acceleration altitude</Fixed>
@@ -36,5 +38,5 @@ date: September 11, 2026
 </ChangelogList>
 
 
-[^1]: Still waiting on numbers from the testing group to quantify the improvement
+[^1]: Pre-release testing has shown significantly reduced stutters and improved stability throughout flight, with higher base framerates on the ground
 [^2]: All three variables are indexed, with `:1` for the L CTP, `:2` for the R CTP, and `:3` for the ISI
