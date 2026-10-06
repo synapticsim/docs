@@ -1,0 +1,43 @@
+---
+upcoming: true
+title: v1.0.11
+date: October 9, 2026
+---
+
+### Systems
+
+<ChangelogList>
+    <Added>Read and write to `L:A22X Transponder Mode` variable [^1]</Added>
+    <Added>Read and write to `L:A22X L/R CTP Bearing 1/2` variables [^1]</Added>
+    <Added>Write to `NAV OBS:1` and `NAV OBS:2` variables</Added>
+    <Added>AMM construction areas rendered as hatched yellow polygons</Added>
+
+    <Fixed>Switching nav database should clear the flight plan</Fixed>
+    <Fixed>Unable to tune radios through default ATC menu</Fixed>
+    <Fixed>Unable to tune frequencies on IVAO due to imprecise channel rounding</Fixed>
+    <Fixed>VHF NAV `AUTO` on the CTP tune page is not aligned correctly</Fixed>
+    <Fixed>Transponder code and ATC ID should display in white when in `STBY` mode</Fixed>
+    <Fixed>Transponder `ALT LIM` should default to `ABOVE/BELOW`</Fixed>
+    <Fixed>Transponder `ATC ID` should default to `00000000`</Fixed>
+    <Fixed>Transponder `ATC ID` variable should be set to aircraft registration, not callsign</Fixed>
+    <Fixed>FMS `PERF DEP` and `PERF ARR` pages should not allow input while in a modified flight plan</Fixed>
+    <Fixed>FMS `PLAN SEC FUEL` page should not show `FMS FOB MODE`, `FUEL PLANNING`, or `NUMBER OF PAX`</Fixed>
+    <Fixed>FMS `PILOT WPTS` dialog `DELETE PILOT WPT` should be disabled if there are no pilot waypoints</Fixed>
+    <Fixed>FMS `PILOT WPTS` dialog waypoints are not removed from list after deletion</Fixed>
+    <Fixed>FMS `DEFINE PILOT WPT` dialog `PB/D` and `PB/PB` input placeholder text is incorrect</Fixed>
+    <Fixed>FMS `DEFINE PILOT WPT` dialog `WPT NAME` input should be required [^2]</Fixed>
+    <Fixed>FMS `DBASE SEARCH` page `ARPT/NAVAID/WPT` and `AIRWAY` inputs should be required [^2]</Fixed>
+    <Fixed>FMS `COPY TO SEC` and `ACTIVATE SEC` buttons should be disabled if there is no `ORIGIN` or `DEST` entered</Fixed>
+    <Fixed>AMM does not prompt for Navigraph sign-in if a session does not already exist</Fixed>
+    <Fixed>AMM single-digit runway identifiers should not be zero-padded</Fixed>
+    <Fixed>AMM non-building vertical obstacles (e.g. trees) rendering as buildings</Fixed>
+    <Fixed>AMM only render taxiway holding positions associated with a taxiway or runway</Fixed>
+    <Fixed>AMM runway highlight should include displaced thresholds</Fixed>
+    <Fixed>AMM missing taxiways inside apron areas</Fixed>
+    <Fixed>AMM missing stand guidance lines at 1000ft range</Fixed>
+    <Fixed>AMM taxiway and apron colors aren't quite right</Fixed>
+</ChangelogList>
+
+
+[^1]: See [SimVars](../pilots/simvars#control-tuning-panel-ctp) for enumeration values
+[^2]: Displayed as boxes rather than dashes when no value is set
