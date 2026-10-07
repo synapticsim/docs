@@ -11,6 +11,7 @@ date: October 9, 2026
     <Added>Read and write to `L:A22X L/R CTP Bearing 1/2` variables [^1]</Added>
     <Added>Write to `NAV OBS:1` and `NAV OBS:2` variables</Added>
     <Added>AMM construction areas rendered as hatched yellow polygons</Added>
+    <Added>Terrain on VSD[^3]</Added>
 
     <Fixed>Switching nav database should clear the flight plan</Fixed>
     <Fixed>Unable to tune radios through default ATC menu</Fixed>
@@ -36,8 +37,14 @@ date: October 9, 2026
     <Fixed>AMM missing taxiways inside apron areas</Fixed>
     <Fixed>AMM missing stand guidance lines at 1000ft range</Fixed>
     <Fixed>AMM taxiway and apron colors aren't quite right</Fixed>
+    <Fixed>FMS not entering DECEL phase if DECEL point would be in vectors</Fixed>
+    <Fixed>Coarse radio minimum knob changes setting by 10 instead of 100</Fixed>
+    <Fixed>Changing standby frequency cancels FMS autotune</Fixed>
+    <Fixed>Engines use 6% less fuel on average</Fixed>
+    <Fixed>Tires spawn with high pressures</Fixed>
 </ChangelogList>
 
 
 [^1]: See [SimVars](../pilots/simvars#control-tuning-panel-ctp) for enumeration values
 [^2]: Displayed as boxes rather than dashes when no value is set
+[^3]: The external map server will need to be updated from [iniManager](https://inibuilds.com/pages/inimanager-v2)
