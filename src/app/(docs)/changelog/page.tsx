@@ -129,7 +129,11 @@ export function generateMetadata(): Metadata {
     // re-fetch it whenever the changelog changes, rather than serving a
     // stale image cached under the same static URL indefinitely.
     const [latest] = getChangelogEntries();
-    const cacheBust = latest && `${latest.slugs.at(-1)}-${latest.data.date}`;
+    const cacheBust =
+        latest &&
+        [latest.slugs.at(-1), latest.data.date]
+            .filter((x) => x !== undefined)
+            .join("-");
 
     return {
         title: "Changelog",

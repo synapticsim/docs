@@ -7,8 +7,8 @@ import {
 } from "fumadocs-mdx/config";
 import { z } from "zod";
 
-// Changelog entries carry a `date`, shown next to the version heading on the
-// page (src/app/(docs)/changelog/page.tsx). The version itself isn't
+// Changelog entries can carry an optional `date`, shown next to the version
+// heading on the page (src/app/(docs)/changelog/page.tsx) when present. The version itself isn't
 // included here — each changelog entry file is named after its version
 // (e.g. `26.7.1.mdx`), so that's derived from the slug instead of duplicated
 // in frontmatter.
