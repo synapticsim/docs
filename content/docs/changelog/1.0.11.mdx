@@ -41,9 +41,19 @@ title: v1.0.11
     <Fixed>Changing standby frequency cancels FMS autotune</Fixed>
     <Fixed>Engines use 6% less fuel on average</Fixed>
     <Fixed>Tires spawn with high pressures</Fixed>
+    <Fixed>RA callouts don't play if the aircraft never went above 2500 feet RA</Fixed>
+    <Fixed>Approaching minimums and minimums callouts sometimes don't play</Fixed>
+    <Fixed>RA callouts can play even if the aircraft is climbing</Fixed>
+    <Fixed>FMS speed clamps to $V_{m o} - 10$ instead of $V_{m o} - 5$</Fixed>
+    <Fixed>FMS speed doesn't clamp to $M_{m o}$ when above mach transition</Fixed>
+    <Fixed>EDM doesn't swap to $V_{m o}$/$M_{m o}$ as required when setting manual speed</Fixed>
+    <Fixed>Engine fuel/oil heat exchanger is not effective enough [^4]</Fixed>
+    <Fixed>AP $\dot{\gamma}$ and $\dot{\theta}$ not limited to $3^{\circ}$ per second</Fixed>
+    <Fixed>Default CRZ SPD reads from CLB SPD field in config</Fixed>
 </ChangelogList>
 
 
 [^1]: See [SimVars](../pilots/simvars#control-tuning-panel-ctp) for enumeration values
 [^2]: Displayed as boxes rather than dashes when no value is set
 [^3]: The external map server will need to be updated from [iniManager](https://inibuilds.com/pages/inimanager-v2)
+[^4]: Causes fuel temperatures to be abnormally low in high-altitude cruise
