@@ -6,12 +6,28 @@ title: v1.0.11
 ### Systems
 
 <ChangelogList>
+    <Added>VSD terrain profile</Added>
+    <Added>VSD aircraft track mode</Added>
     <Added>Read and write to `L:A22X Transponder Mode` variable [^1]</Added>
     <Added>Read and write to `L:A22X L/R CTP Bearing 1/2` variables [^1]</Added>
     <Added>Write to `NAV OBS:1` and `NAV OBS:2` variables</Added>
     <Added>AMM construction areas rendered as hatched yellow polygons</Added>
-    <Added>Terrain on VSD [^3]</Added>
+    <Added>Terrain on VSD [^2]</Added>
 
+    <Fixed>FMS not entering DECEL phase if DECEL point would be in vectors</Fixed>
+    <Fixed>Coarse radio minimums knob should changes setting 100 ft</Fixed>
+    <Fixed>Changing VHF NAV standby frequency should not cancel FMS autotune</Fixed>
+    <Fixed>Engines should use 6% more fuel on average</Fixed>
+    <Fixed>Aircraft initializes with high tire pressures</Fixed>
+    <Fixed>RA callouts don't play if the aircraft never went above 2,500 ft RA</Fixed>
+    <Fixed>RA callouts can play even if the aircraft is climbing</Fixed>
+    <Fixed>Approaching minimums and minimums callouts don't always play</Fixed>
+    <Fixed>FMS speed clamps to <code>V<sub>MO</sub> - 10</code> instead of <code>V<sub>MO</sub> - 5</code></Fixed>
+    <Fixed>FMS speed doesn't clamp to M<sub>MO</sub> when above mach transition</Fixed>
+    <Fixed>EDM doesn't swap to V<sub>MO</sub>/M<sub>MO</sub> as required when setting manual speed</Fixed>
+    <Fixed>Engine fuel/oil heat exchanger is not effective enough [^3]</Fixed>
+    <Fixed>AP flight path angle and pitch rates not limited to 3 degrees per second</Fixed>
+    <Fixed>Default CRZ SPD is reading from CLB SPD field in config</Fixed>
     <Fixed>Switching nav database should clear the flight plan</Fixed>
     <Fixed>Unable to tune radios through default ATC menu</Fixed>
     <Fixed>Unable to tune frequencies on IVAO due to imprecise channel rounding</Fixed>
@@ -25,8 +41,8 @@ title: v1.0.11
     <Fixed>FMS `PILOT WPTS` dialog `DELETE PILOT WPT` should be disabled if there are no pilot waypoints</Fixed>
     <Fixed>FMS `PILOT WPTS` dialog waypoints are not removed from list after deletion</Fixed>
     <Fixed>FMS `DEFINE PILOT WPT` dialog `PB/D` and `PB/PB` input placeholder text is incorrect</Fixed>
-    <Fixed>FMS `DEFINE PILOT WPT` dialog `WPT NAME` input should be required [^2]</Fixed>
-    <Fixed>FMS `DBASE SEARCH` page `ARPT/NAVAID/WPT` and `AIRWAY` inputs should be required [^2]</Fixed>
+    <Fixed>FMS `DEFINE PILOT WPT` dialog `WPT NAME` input should be required [^4]</Fixed>
+    <Fixed>FMS `DBASE SEARCH` page `ARPT/NAVAID/WPT` and `AIRWAY` inputs should be required [^4]</Fixed>
     <Fixed>FMS `COPY TO SEC` and `ACTIVATE SEC` buttons should be disabled if there is no `ORIGIN` or `DEST` entered</Fixed>
     <Fixed>AMM does not prompt for Navigraph sign-in if a session does not already exist</Fixed>
     <Fixed>AMM single-digit runway identifiers should not be zero-padded</Fixed>
@@ -36,24 +52,19 @@ title: v1.0.11
     <Fixed>AMM missing taxiways inside apron areas</Fixed>
     <Fixed>AMM missing stand guidance lines at 1000ft range</Fixed>
     <Fixed>AMM taxiway and apron colors aren't quite right</Fixed>
-    <Fixed>FMS not entering DECEL phase if DECEL point would be in vectors</Fixed>
-    <Fixed>Coarse radio minimum knob changes setting by 10 instead of 100</Fixed>
-    <Fixed>Changing standby frequency cancels FMS autotune</Fixed>
-    <Fixed>Engines use 6% less fuel on average</Fixed>
-    <Fixed>Tires spawn with high pressures</Fixed>
-    <Fixed>RA callouts don't play if the aircraft never went above 2500 feet RA</Fixed>
-    <Fixed>Approaching minimums and minimums callouts sometimes don't play</Fixed>
-    <Fixed>RA callouts can play even if the aircraft is climbing</Fixed>
-    <Fixed>FMS speed clamps to $V_{m o} - 10$ instead of $V_{m o} - 5$</Fixed>
-    <Fixed>FMS speed doesn't clamp to $M_{m o}$ when above mach transition</Fixed>
-    <Fixed>EDM doesn't swap to $V_{m o}$/$M_{m o}$ as required when setting manual speed</Fixed>
-    <Fixed>Engine fuel/oil heat exchanger is not effective enough [^4]</Fixed>
-    <Fixed>AP $\dot{\gamma}$ and $\dot{\theta}$ not limited to $3^{\circ}$ per second</Fixed>
-    <Fixed>Default CRZ SPD reads from CLB SPD field in config</Fixed>
+</ChangelogList>
+
+
+### Miscellaneous
+
+<ChangelogList>
+    <Added>Tiller animation</Added>
+    <Added>Randomized window shade positions</Added>
+    <Fixed>All lights turned on before pressing "Start Flight" when spawning at a gate</Fixed>
 </ChangelogList>
 
 
 [^1]: See [SimVars](../pilots/simvars#control-tuning-panel-ctp) for enumeration values
-[^2]: Displayed as boxes rather than dashes when no value is set
-[^3]: The external map server will need to be updated from [iniManager](https://inibuilds.com/pages/inimanager-v2)
-[^4]: Causes fuel temperatures to be abnormally low in high-altitude cruise
+[^2]: The external map server will need to be updated from [iniManager](https://inibuilds.com/pages/inimanager-v2)
+[^3]: Causes fuel temperatures to be abnormally low in high-altitude cruise
+[^4]: Displayed as boxes rather than dashes when no value is set
