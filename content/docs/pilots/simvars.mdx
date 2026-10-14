@@ -156,6 +156,13 @@ description: |
 | `L:INI_GPU_AVAIL` | Bool | Whether a ground power unit (GPU) is available to connect to the aircraft |
 
 
+### Contactors
+
+| Variable | Unit | Description |
+|---|---|---|
+| `L:A22X RLC Active`<br/>`L:A22X BCCR Active`<br/>`L:A22X DC Emer Relay 1 Active`<br/>`L:A22X DC Emer Relay 2 Active` | Bool | Whether the two-pole contactor/relay is energized (switched to its active position) |
+
+
 ## Emergency Locator Transmitter (ELT)
 
 | Variable | Unit | Description |
@@ -406,7 +413,8 @@ No panel-specific variables — the trim panel component only relays landing gea
 
 | Variable | Unit | Description |
 |---|---|---|
-| `L:A22X L Tiller` | Bool | If the tiller steering handle is disconnected (e.g. for pedal-only steering) |
+| `L:A22X Pedal Disc` | Bool | Whether rudder pedal steering is disconnected from the nose wheel (tiller-only steering); toggled by `TOGGLE_TAILWHEEL_LOCK` |
+| `L:A22X Tiller Position` | Number | Tiller handle position (-1 to 1), combining tiller and rudder pedal input; driven for 3D model animation |
 
 
 ## Control Tuning Panel (CTP)
@@ -420,6 +428,17 @@ No panel-specific variables — the trim panel component only relays landing gea
 | `L:A22X L CTP Crosstune`<br/>`L:A22X R CTP Crosstune` | Bool | Toggles CTP crosstuning when set |
 | `L:A22X L CTP Brightness`<br/>`L:A22X R CTP Brightness` | Percent over 100 | Sets CTP brightness, from off (0) to full bright (1) |
 | `L:A22X L CTP Backlight`<br/>`L:A22X R CTP Backlight` | Percent over 100 | CTP backlight brightness, from off (0) to full bright (1) |
+| `L:A22X L CTP Bearing 1`<br/>`L:A22X R CTP Bearing 1` | Enum | Bearing pointer 1 source<ol start="0"><li>Off</li><li>FMS</li><li>VOR</li></ol> |
+| `L:A22X L CTP Bearing 2`<br/>`L:A22X R CTP Bearing 2` | Enum | Bearing pointer 2 source<ol start="0"><li>Off</li><li>FMS</li><li>VOR</li></ol> |
+
+The selected course is also kept in sync with the stock `NAV OBS:1`/`NAV OBS:2` SimVars, so it can be set externally with `VOR1_SET`/`VOR2_SET`.
+
+
+## ATC Transponder
+
+| Variable | Unit | Description |
+|---|---|---|
+| `L:A22X Transponder Mode` | Enum | Selected transponder mode<ol start="0"><li>Auto</li><li>Standby</li><li>TA/RA</li><li>TA Only</li><li>Alt On</li><li>Alt Off</li></ol> |
 
 
 ## Radio Interface Unit (RIU)

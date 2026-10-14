@@ -12,7 +12,6 @@ title: v1.0.11
     <Added>Read and write to `L:A22X L/R CTP Bearing 1/2` variables [^1]</Added>
     <Added>Write to `NAV OBS:1` and `NAV OBS:2` variables</Added>
     <Added>AMM construction areas rendered as hatched yellow polygons</Added>
-    <Added>Terrain on VSD [^2]</Added>
 
     <Fixed>FMS not entering DECEL phase if DECEL point would be in vectors</Fixed>
     <Fixed>Coarse radio minimums knob should changes setting 100 ft</Fixed>
@@ -22,9 +21,9 @@ title: v1.0.11
     <Fixed>RA callouts don't play if the aircraft never went above 2,500 ft RA</Fixed>
     <Fixed>RA callouts can play even if the aircraft is climbing</Fixed>
     <Fixed>Approaching minimums and minimums callouts don't always play</Fixed>
-    <Fixed>FMS speed clamps to <code>V<sub>MO</sub> - 10</code> instead of <code>V<sub>MO</sub> - 5</code></Fixed>
-    <Fixed>FMS speed doesn't clamp to M<sub>MO</sub> when above mach transition</Fixed>
-    <Fixed>EDM doesn't swap to V<sub>MO</sub>/M<sub>MO</sub> as required when setting manual speed</Fixed>
+    <Fixed>FMS speed should clamp to <code>V<sub>MO</sub> - 5</code></Fixed>
+    <Fixed>FMS speed should clamp to M<sub>MO</sub> when above mach transition</Fixed>
+    <Fixed>EDM should swap to V<sub>MO</sub>/M<sub>MO</sub> as required when setting manual speed</Fixed>
     <Fixed>Engine fuel/oil heat exchanger is not effective enough [^3]</Fixed>
     <Fixed>AP flight path angle and pitch rates not limited to 3 degrees per second</Fixed>
     <Fixed>Default CRZ SPD is reading from CLB SPD field in config</Fixed>
@@ -52,6 +51,7 @@ title: v1.0.11
     <Fixed>AMM missing taxiways inside apron areas</Fixed>
     <Fixed>AMM missing stand guidance lines at 1000ft range</Fixed>
     <Fixed>AMM taxiway and apron colors aren't quite right</Fixed>
+    <Fixed>`Update Available` dialog should not appear for an older version</Fixed>
 </ChangelogList>
 
 
@@ -59,8 +59,15 @@ title: v1.0.11
 
 <ChangelogList>
     <Added>Tiller animation</Added>
-    <Added>Randomized window shade positions</Added>
     <Fixed>All lights turned on before pressing "Start Flight" when spawning at a gate</Fixed>
+</ChangelogList>
+
+
+### Liveries
+
+<ChangelogList>
+    <Added>Updated custom checklist package for airBaltic</Added>
+    <Fixed>Inverted `ALTN FLAP` sensed variable in Delta's `Preflight` checklist</Fixed>
 </ChangelogList>
 
 
