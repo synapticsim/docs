@@ -1,0 +1,28 @@
+---
+title: Toolbox
+description: The taskbar app that installs, updates, and runs the A220's external services.
+---
+
+import toolboxLight from "./toolbox-light.png";
+import toolboxDark from "./toolbox-dark.png";
+
+<div className="not-prose" style={{ display: "flex", justifyContent: "center" }}>
+    <img src={toolboxLight.src} alt="Synaptic Toolbox in light mode" width={toolboxLight.width / 2} height={toolboxLight.height / 2} className="dark:hidden" />
+    <img src={toolboxDark.src} alt="Synaptic Toolbox in dark mode" width={toolboxDark.width / 2} height={toolboxDark.height / 2} className="hidden dark:block" />
+</div>
+
+The Synaptic Toolbox is a small taskbar app that manages external services for the A220. This includes the [terrain map server](/pilots/toolbox/terrain) and will soon include the external EFB. Through the Toolbox, these services can be installed, updated, and monitored.
+
+<LinkButton href="https://github.com/synapticsim/releases/releases/download/index-latest/SynapticToolboxSetup.exe">
+  Download the Synaptic Toolbox
+</LinkButton>
+
+
+## File locations
+
+| What | Where |
+|---|---|
+| Settings | `%APPDATA%\com.synapticsim.toolbox\config.json` |
+| Logs | `%LOCALAPPDATA%\com.synapticsim.toolbox\logs\toolbox.log` |
+
+The log is cleared each time the Toolbox starts, so copy it before restarting if you need it. The terrain server writes to the same log.
