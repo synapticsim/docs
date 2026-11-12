@@ -1,0 +1,28 @@
+---
+title: v1.0.12
+upcoming: true
+---
+
+### Systems
+
+<ChangelogList>
+    <Added>Pressing `Enter` submits hovered MFW input fields</Added>
+    <Added>`H:A220_KBD_ENTER_1` and `H:A220_KBD_ENTER_1` submit hovered MFW input fields</Added>
+    <Added>`Don't Show Again` option for dismissing Navigraph sign-in</Added>
+
+    <Fixed>Weird artifacting when displays are not set to full brightness [^1]</Fixed>
+    <Fixed>Weird artifacting on the terrain map image when zooming in</Fixed>
+    <Fixed>`GS` mode should enable `A/C TRK` mode on the VSD</Fixed>
+    <Fixed>Stepping barometer from `STD` should snap to nearest value [^2]</Fixed>
+    <Fixed>EICAS N1 should display in cyan when manual thrust mode is enabled</Fixed>
+    <Fixed>`AUTOPILOT VERTICAL HOLD VAR` does not report the correct sign</Fixed>
+    <Fixed>`RESERVE/CONTINGENCY` and `NUMBER OF PAX` fields on FMS `FPLN FUEL` page should be optional [^3]</Fixed>
+    <Fixed>`RESERVE/CONTINGENCY` field on FMS `FPLN FUEL` page should be pre-filled with the FMS default value</Fixed>
+    <Fixed>FMS `POS REPORT` page should display current `UTC` and `DATE`</Fixed>
+    <Fixed>FMS `POS REPORT` and `FLT LOG` pages should show placeholder rows when empty</Fixed>
+</ChangelogList>
+
+
+[^1]: This potentially resolves issues on AMD 7000 series graphics cards, but this is speculatory and has not been confirmed
+[^2]: We currently add or subtract 1 hPa / 0.01 inHg, leading to a value of 1012.25 hPa / 29.9113 inHg or 1014.25 hPa / 29.9313 inHg instead of the expected 1012 hPa / 29.91 inHg or 1014 hPa / 29.93 inHg
+[^3]: Displayed as boxes rather than dashes when no value is set
