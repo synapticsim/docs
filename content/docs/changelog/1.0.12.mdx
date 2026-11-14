@@ -7,8 +7,11 @@ upcoming: true
 
 <ChangelogList>
     <Added>Pressing `Enter` submits hovered MFW input fields</Added>
-    <Added>`H:A220_KBD_ENTER_1` and `H:A220_KBD_ENTER_1` submit hovered MFW input fields</Added>
+    <Added>`H:A220_KBD_ENTER_1` and `H:A220_KBD_ENTER_2` submit hovered MFW input fields</Added>
     <Added>`Don't Show Again` option for dismissing Navigraph sign-in</Added>
+    <Added>ECL `Normal` index can include section headers</Added>
+    <Added>ECL items can specify multiple follow-on checklists</Added>
+    <Added>ECL conditional and multi-select items can specify follow-on checklists</Added>
 
     <Fixed>Weird artifacting when displays are not set to full brightness [^1]</Fixed>
     <Fixed>Weird artifacting on the terrain map image when zooming in</Fixed>
@@ -24,9 +27,12 @@ upcoming: true
     <Fixed>EXT PWR should automatically engage on engine shutdown and disengage on engine start</Fixed>
     <Fixed>Bus isolation modes did not function correctly</Fixed>
     <Fixed>Arming TOGA should not replace the armed mode with the active mode</Fixed>
+    <Fixed>ECL should not automatically skip past completed pages</Fixed>
+    <Fixed>ECL checklist should not be completable until all active free text is viewed</Fixed>
+    <Fixed>ECL free text items should trigger follow-on checklists</Fixed>
 </ChangelogList>
 
 
 [^1]: This potentially resolves issues on AMD 7000 series graphics cards, but this is speculatory and has not been confirmed
 [^2]: We currently add or subtract 1 hPa / 0.01 inHg, leading to a value of 1012.25 hPa / 29.9113 inHg or 1014.25 hPa / 29.9313 inHg instead of the expected 1012 hPa / 29.91 inHg or 1014 hPa / 29.93 inHg
-[^3]: Displayed as boxes rather than dashes when no value is set
+[^3]: Displayed as dashes rather than boxes when no value is set
