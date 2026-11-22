@@ -12,6 +12,8 @@ upcoming: true
     <Added>ECL `Normal` index can include section headers</Added>
     <Added>ECL items can specify multiple follow-on checklists</Added>
     <Added>ECL conditional and multi-select items can specify follow-on checklists</Added>
+    <Added>Active VNAV information at the bottom of FMS `PERF CLB`, `PERF CRZ`, and `PERF DES` pages</Added>
+    <Added>Ability to clear active descent speed constraint from FMS `PERF CLB`, `PERF CRZ`, and `PERF DES` pages</Added>
 
     <Fixed>Weird artifacting when displays are not set to full brightness [^1]</Fixed>
     <Fixed>Weird artifacting on the terrain map image when zooming in</Fixed>
@@ -34,6 +36,8 @@ upcoming: true
     <Fixed>Creating a `L/L` temporary fix in the polar region on the ND sometimes shows `SNaN°00NaN WNaN°00NaN`</Fixed>
     <Fixed>Terrain server crashes when VSD terrain is enabled, the flight plan contains holds, and VNAV has not been computed yet</Fixed>
     <Fixed>Holds defined by time should keep their leg time when the hold speed changes [^4]</Fixed>
+    <Fixed>FMS TOC distances up to 2.5 NM too far along the route</Fixed>
+    <Fixed>FMS accelerates to climb speed after first altitude constraint instead of above acceleration altitude</Fixed>
 </ChangelogList>
 
 
