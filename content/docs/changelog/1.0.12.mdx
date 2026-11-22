@@ -3,45 +3,10 @@ title: v1.0.12
 upcoming: true
 ---
 
-### Systems
+<Callout type="info">
+    Microsoft Marketplace ingestion of [v1.0.11](#v1.0.11) failed and we must resubmit a new package.
 
-<ChangelogList>
-    <Added>Pressing `Enter` submits hovered MFW input fields</Added>
-    <Added>`H:A220_KBD_ENTER_1` and `H:A220_KBD_ENTER_2` submit hovered MFW input fields</Added>
-    <Added>`Don't Show Again` option for dismissing Navigraph sign-in</Added>
-    <Added>ECL `Normal` index can include section headers</Added>
-    <Added>ECL items can specify multiple follow-on checklists</Added>
-    <Added>ECL conditional and multi-select items can specify follow-on checklists</Added>
-    <Added>Active VNAV information at the bottom of FMS `PERF CLB`, `PERF CRZ`, and `PERF DES` pages</Added>
-    <Added>Ability to clear active descent speed constraint from FMS `PERF CLB`, `PERF CRZ`, and `PERF DES` pages</Added>
+    Since the MSFS 2020 version identifier is automatically determined by bumping the previous package name, we must cut a release for **v1.0.12** to ensure version identifiers remain consistent across both Marketplace and iniManager platforms.
 
-    <Fixed>Weird artifacting when displays are not set to full brightness [^1]</Fixed>
-    <Fixed>Weird artifacting on the terrain map image when zooming in</Fixed>
-    <Fixed>`GS` mode should enable `A/C TRK` mode on the VSD</Fixed>
-    <Fixed>Stepping barometer from `STD` should snap to nearest value [^2]</Fixed>
-    <Fixed>EICAS N1 should display in cyan when manual thrust mode is enabled</Fixed>
-    <Fixed>`AUTOPILOT VERTICAL HOLD VAR` does not report the correct sign</Fixed>
-    <Fixed>`RESERVE/CONTINGENCY` and `NUMBER OF PAX` fields on FMS `FPLN FUEL` page should be optional [^3]</Fixed>
-    <Fixed>`RESERVE/CONTINGENCY` field on FMS `FPLN FUEL` page should be pre-filled with the FMS default value</Fixed>
-    <Fixed>FMS `POS REPORT` page should display current `UTC` and `DATE`</Fixed>
-    <Fixed>FMS `POS REPORT` and `FLT LOG` pages should show placeholder rows when empty</Fixed>
-    <Fixed>VOR CRS setting should use station declination instead of aircraft declination</Fixed>
-    <Fixed>EXT PWR should automatically engage on engine shutdown and disengage on engine start</Fixed>
-    <Fixed>Bus isolation modes did not function correctly</Fixed>
-    <Fixed>Arming TOGA should not replace the armed mode with the active mode</Fixed>
-    <Fixed>ECL should not automatically skip past completed pages</Fixed>
-    <Fixed>ECL checklist should not be completable until all active free text is viewed</Fixed>
-    <Fixed>ECL free text items should trigger follow-on checklists</Fixed>
-    <Fixed>ND `PLAN` mode should stay within latitude limits when zooming out or using `CENTER MAP` in the polar region</Fixed>
-    <Fixed>Creating a `L/L` temporary fix in the polar region on the ND sometimes shows `SNaN°00NaN WNaN°00NaN`</Fixed>
-    <Fixed>Terrain server crashes when VSD terrain is enabled, the flight plan contains holds, and VNAV has not been computed yet</Fixed>
-    <Fixed>Holds defined by time should keep their leg time when the hold speed changes [^4]</Fixed>
-    <Fixed>FMS TOC distances up to 2.5 NM too far along the route</Fixed>
-    <Fixed>FMS accelerates to climb speed after first altitude constraint instead of above acceleration altitude</Fixed>
-</ChangelogList>
-
-
-[^1]: This potentially resolves issues on AMD 7000 series graphics cards, but this is speculatory and has not been confirmed
-[^2]: We currently add or subtract 1 hPa / 0.01 inHg, leading to a value of 1012.25 hPa / 29.9113 inHg or 1014.25 hPa / 29.9313 inHg instead of the expected 1012 hPa / 29.91 inHg or 1014 hPa / 29.93 inHg
-[^3]: Displayed as dashes rather than boxes when no value is set
-[^4]: The leg distance was calculated once and reused, so changing the hold speed did not update the leg length to match the leg time
+    **v1.0.12** is not published to iniManager.
+</Callout>
